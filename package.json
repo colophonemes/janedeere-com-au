@@ -6,6 +6,7 @@
     "@contentful/rich-text-react-renderer": "^13.2.0",
     "@contentful/rich-text-types": "^13.4.0",
     "@material-ui/core": "^4.3.1",
+    "@material-ui/icons": "^4.4.3",
     "@material-ui/styles": "^4.3.0",
     "react": "^16.8.6",
     "react-contentful": "^1.4.4",
@@ -19,10 +20,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": "react-app"
+    "eject": "react-scripts eject",
+    "lint": "eslint . --ext js,jsx src",
+    "lint-fix": "eslint . --ext js,jsx src --fix"
   },
   "browserslist": {
     "production": [
@@ -35,5 +35,15 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "eslint-config-standard": "^14.1.0",
+    "eslint-config-standard-react": "^9.2.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-node": "^10.0.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-react": "^7.14.3",
+    "eslint-plugin-standard": "^4.0.1",
+    "standard": "^14.3.1"
   }
 }

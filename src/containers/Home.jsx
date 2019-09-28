@@ -1,31 +1,60 @@
 import React from 'react'
-import Container from '@material-ui/core/Container';
-import Grid from '@material-ui/core/Grid';
+import PropTypes from 'prop-types'
+import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
+import { ContentfulContentQuery, rendererConfig } from 'utilities/contentful'
 
-import styled from 'styled-components'
-const WideImage = styled.div`
-  background-image: url(https://images.ctfassets.net/mmuao815pexb/1tkcRcXZ6IC8YBmf2abfNn/dba1c8d4484be2684fc06525d731576c/DSC_0471_-_20161228_-_Dasha_Agapanthus_Frost__small__.jpg?w=1200);
-  text-align: center;
-  background-size: cover;
-`
+import Grid from '@material-ui/core/Grid'
+import { ReactComponent as LogoPlusLogoType } from 'images/Logo + LogoType.svg'
+import { withStyles } from '@material-ui/styles'
+import Typography from '@material-ui/core/Typography'
+import Divider from '@material-ui/core/Divider'
 
-const Home = props => <div>
-  <WideImage>
-      <Container>
-        <Grid
-          container
-          direction="row"
-          justify="center"
-          alignItems="center"
-          spacing={3}
-        >
-          <Grid item xs={12}>
-            <h2>Test</h2>
-            <p>Post 1</p>
-          </Grid>
-        </Grid>
-      </Container>
-    </WideImage>
-</div>
+const styles = theme => ({
+  logoPlusLogoTypeContainer: {
+    textAlign: 'center'
+  },
+  logoPlusLogoType: {
+    display: 'flex',
+    margin: `${theme.spacing(2)}px auto ${theme.spacing(12)}px`,
+    height: 200
+  }
+})
 
-export default Home
+const HomeContent = ({ fields: { body } }) => <React.Fragment>
+  {documentToReactComponents(body, rendererConfig)}
+</React.Fragment>
+
+const Home = ({ classes }) => <React.Fragment>
+  <Grid container justify='center'>
+    <Grid item xs={12} className={classes.logoPlusLogoTypeContainer}>
+      <LogoPlusLogoType className={classes.logoPlusLogoType} />
+    </Grid>
+    <Grid item xs={12}>
+      <ContentfulContentQuery
+        contentType='page'
+        query={{ 'fields.slug': 'home' }}
+        component={HomeContent}
+        single
+      />
+    </Grid>
+  </Grid>
+  <Grid
+    container
+    direction='row'
+    justify='center'
+    alignItems='center'
+    spacing={3}
+  >
+    <Divider />
+    <Grid item>
+      <Typography paragraph align='center'><em>Recent blog posts will display here...</em></Typography>
+    </Grid>
+
+  </Grid>
+</React.Fragment>
+
+Home.propTypes = {
+  classes: PropTypes.object.isRequired
+}
+
+export default withStyles(styles)(Home)

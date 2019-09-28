@@ -1,40 +1,33 @@
 import React from 'react'
-import { Query } from 'react-contentful'
+import PropTypes from 'prop-types'
+import { ContentfulContentQuery } from 'utilities/contentful'
+import Grid from '@material-ui/core/Grid'
+import PostExcerpt from 'components/PostExcerpt'
+import Container from '@material-ui/core/Container'
 
-import {PostExcerpt} from './PostContent'
-import {Container, Grid, Card, CircularProgress} from '@material-ui/core';
+const PostsGrid = ({ items }) => <Grid container spacing={3}>
+  {items.map(item => <Grid item xs={12} key={item.sys.id}>
+    <PostExcerpt {...item.fields} />
+  </Grid>)}
+</Grid>
+
+PostsGrid.propTypes = {
+  items: PropTypes.arrayOf(
+    PropTypes.shape({
+      sys: PropTypes.object.isRequired,
+      fields: PropTypes.object.isRequired
+    })
+  )
+}
 
 const Posts = props => <Container>
-  <Query
-    contentType="post"
+  <ContentfulContentQuery
+    contentType='post'
     query={{
       order: '-sys.createdAt'
-    }}>
-      {({data, error, fetched, loading}) => {
-        if (loading || !fetched) {
-          return <CircularProgress />;
-        }
-
-        if (error) {
-          console.error(error);
-          return null;
-        }
-
-        if (!data) {
-          return <p>Page does not exist.</p>;
-        }
-
-        // See the Contentful query response
-        console.log(data);
-
-        // Process and pass in the loaded `data` necessary for your page or child components.
-        return <Grid container spacing={3}>
-           {data.items.map(item => <Grid item xs={12} key={item.sys.id}><Card>
-             <PostExcerpt {...item.fields} />
-           </Card></Grid>)}
-        </Grid>
-      }}
-  </Query>
+    }}
+    component={PostsGrid}
+  />
 </Container>
 
 export default Posts

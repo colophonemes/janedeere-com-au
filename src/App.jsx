@@ -1,22 +1,17 @@
-import React from 'react';
-import { BrowserRouter as Router, Route } from "react-router-dom";
-import { ContentfulClient, ContentfulProvider } from 'react-contentful';
+import React from 'react'
+import { BrowserRouter as Router } from 'react-router-dom'
+import { ContentfulClient, ContentfulProvider } from 'react-contentful'
 
+import { ThemeProvider } from '@material-ui/styles'
+import { createMuiTheme } from '@material-ui/core/styles'
+import CssBaseline from '@material-ui/core/CssBaseline'
+import teal from '@material-ui/core/colors/teal'
 
-import Header from 'components/layout/Header'
-import Container from '@material-ui/core/Container';
-import { ThemeProvider } from '@material-ui/styles';
-import { createMuiTheme } from '@material-ui/core/styles';
-import green from '@material-ui/core/colors/green';
-
-import Home from 'containers/Home'
-import Posts from 'containers/Posts'
-import Post from 'containers/Post'
-
+import Content from 'components/layout/Content'
 
 const headings = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'].reduce((coll, h) => {
   coll[h] = {
-    fontFamily: ['Oxygen', 'sans-serif'].join(', '),
+    fontFamily: ['Josefin Slab', 'sans-serif'].join(', '),
     fontWeight: 700
   }
   return coll
@@ -28,10 +23,10 @@ const theme = createMuiTheme({
     ...headings
   },
   palette: {
-    primary: green
+    primary: teal
   },
   status: {
-    danger: 'orange',
+    danger: 'orange'
   },
   classes: {
     responsiveImage: {
@@ -41,8 +36,6 @@ const theme = createMuiTheme({
   }
 })
 
-console.log(theme)
-
 const {
   REACT_APP_CONTENTFUL_SPACE,
   REACT_APP_CONTENTFUL_CONTENT_DELIVERY_ACCESS_TOKEN
@@ -51,17 +44,20 @@ const {
 const contentfulClient = new ContentfulClient({
   space: REACT_APP_CONTENTFUL_SPACE,
   accessToken: REACT_APP_CONTENTFUL_CONTENT_DELIVERY_ACCESS_TOKEN
-});
+})
 
-const App = () => <div className="App">
-  <Router><ContentfulProvider client={contentfulClient} locale='en-GB'><ThemeProvider theme={theme}>
-    <Container fixed>
-      <Header />
-      <Route exact path="/" component={Home} />
-      <Route exact path="/blog" component={Posts} />
-      <Route path="/blog/:postSlug" component={Post} />
-    </Container>
-  </ThemeProvider></ContentfulProvider></Router>
+const LOCALE = 'en-GB'
+
+const App = () => <div className='App'>
+  <CssBaseline>
+    <ThemeProvider theme={theme}>
+      <ContentfulProvider client={contentfulClient} locale={LOCALE}>
+        <Router>
+          <Content />
+        </Router>
+      </ContentfulProvider>
+    </ThemeProvider>
+  </CssBaseline>
 </div>
 
-export default App;
+export default App
