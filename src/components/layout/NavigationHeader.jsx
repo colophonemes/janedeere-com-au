@@ -2,13 +2,12 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
-import Typography from '@material-ui/core/Typography'
 import IconButton from '@material-ui/core/IconButton'
 import MenuIcon from '@material-ui/icons/Menu'
 import HomeIcon from '@material-ui/icons/Home'
 import StarIcon from '@material-ui/icons/Star'
 import { withStyles } from '@material-ui/styles'
-import { NavLink } from 'react-router-dom'
+import { NavLink, Link as RouterLink } from 'react-router-dom'
 import { ReactComponent as LogoType } from 'images/LogoType.svg'
 import { ReactComponent as Logo } from 'images/Logo.svg'
 
@@ -29,6 +28,11 @@ const menuItems = [
     href: '/blog',
     text: 'Blog',
     icon: StarIcon
+  },
+  {
+    href: '/about',
+    text: 'About',
+    icon: StarIcon
   }
 ]
 
@@ -39,7 +43,11 @@ const styles = theme => ({
   menuButton: {
     marginRight: theme.spacing(2)
   },
+  menuButtonFixed: {
+    position: 'fixed'
+  },
   logoType: {
+    paddingTop: 6,
     height: 28
   },
   logo: {
@@ -63,16 +71,18 @@ const Header = ({ classes, minimal }) => {
   return <div className={classes.root}>
     {!minimal
       ? <header>
-        <AppBar color='default' position="static">
+        <AppBar color='default' position="fixed">
           <Toolbar variant="dense">
             <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu" onClick={openMenu}>
               <MenuIcon />
             </IconButton>
-            <LogoType preserveAspectRatio='meet' className={classes.logoType} />
+            <RouterLink to='/'>
+              <LogoType preserveAspectRatio='xMidYMid meet' className={classes.logoType} />
+            </RouterLink>
           </Toolbar>
         </AppBar>
       </header>
-      : <IconButton className={classes.menuButton} color="inherit" aria-label="menu" onClick={openMenu}>
+      : <IconButton className={[classes.menuButton, classes.menuButtonFixed].join(' ')} color="inherit" aria-label="menu" onClick={openMenu}>
         <MenuIcon />
       </IconButton>
     }

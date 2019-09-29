@@ -3,23 +3,25 @@ import PropTypes from 'prop-types'
 import { ContentfulContentQuery } from 'utilities/contentful'
 
 import Grid from '@material-ui/core/Grid'
-import Divider from '@material-ui/core/Divider'
 import PostContent from 'components/PostContent'
-import Link from 'components/Link'
+import SpacedDivider from 'components/SpacedDivider'
+import Commento from 'components/Commento'
+import Typography from '@material-ui/core/Typography'
 
-const PostContentWrapper = ({ sys, fields }) => <Grid container spacing={3}>
-  <Grid item xs={12}>
-    <Link to={'/blog'}>Blog</Link>
-    <Divider />
+const PostContentWrapper = ({ sys, fields }) => <React.Fragment>
+  <Grid container justify='center' spacing={3}>
+    <Grid item xs={12} md={8}>
+      <PostContent key={sys.id} {...{ sys, fields }} />
+    </Grid>
   </Grid>
-  <Grid item xs={12}>
-    <PostContent key={sys.id} {...{sys, fields}} />
+  <Grid container justify='center' spacing={3}>
+    <Grid item xs={12} md={8}>
+      <SpacedDivider />
+      <Typography variant='h4' gutterBottom>Comments</Typography>
+      <Commento id={sys.id} />
+    </Grid>
   </Grid>
-  <Grid item xs={12}>
-    <Divider />
-  </Grid>
-</Grid>
-
+</React.Fragment>
 PostContentWrapper.propTypes = {
   sys: PropTypes.object.isRequired,
   fields: PropTypes.object.isRequired

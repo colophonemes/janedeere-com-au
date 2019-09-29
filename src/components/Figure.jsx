@@ -7,19 +7,15 @@ const useStyles = makeStyles({
   root: {
     margin: '30px 0'
   },
-  content: props => {
-    console.log('Content props', props)
-    return {
-      marginBottom: props.hasCaption ? '0.2em' : 0
-    }
-  },
+  content: props => ({
+    marginBottom: props.hasCaption ? '0.2em' : 0
+  }),
   caption: {
     textAlign: 'center'
   }
 })
 
 const Figure = ({ content, caption }) => {
-  console.log(caption)
   const classes = useStyles({ hasCaption: !!caption })
   return <figure className={classes.root}>
     <div className={classes.content}>{content}</div>
@@ -31,7 +27,7 @@ const Figure = ({ content, caption }) => {
 
 Figure.propTypes = {
   content: PropTypes.object,
-  caption: PropTypes.object
+  caption: PropTypes.string
 }
 
 export default Figure

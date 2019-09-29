@@ -7,41 +7,12 @@ import Box from '@material-ui/core/Box'
 import Link from '@material-ui/core/Link'
 import CircularProgress from '@material-ui/core/CircularProgress'
 import { Link as RouterLink } from 'react-router-dom'
-import ReactContentfulImage from 'react-contentful-image'
-import Figure from 'components/Figure'
+import FourOhFour from 'containers/404'
+import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
+import ContentfulFigure from 'components/ContentfulFigure'
 import { makeStyles } from '@material-ui/styles'
 
 const isRelativeLink = link => /^\//.test(link)
-
-const imageSizes = [
-  {
-    mediaQuery: 'default',
-    params: { w: 228 }
-  },
-  {
-    mediaQuery: 'sm',
-    params: { w: 600 }
-  },
-  {
-    mediaQuery: 'md',
-    params: { w: 960 }
-  },
-  {
-    mediaQuery: 'lg',
-    params: { w: 1280 }
-  },
-  {
-    mediaQuery: 'xl',
-    params: { w: 1920 }
-  }
-]
-
-const responsiveImgClasses = makeStyles({
-  root: {
-    width: 'auto',
-    maxWidth: '100%'
-  }
-})
 
 const ParagraphRenderer = (node, children) => <Typography paragraph>{children}</Typography>
 
@@ -53,27 +24,54 @@ const HyperlinkRenderer = (node, children) => {
   </Link>
 }
 
-const EmbeddedAssetRenderer = (node, children) => {
-  const { title, file, description } = node.data.target.fields
-  const classes = responsiveImgClasses()
-  return <Figure
-    content={<ReactContentfulImage
-      src={file.url}
-      sizes={imageSizes}
-      alt={title}
-      className={classes.root}
-    />}
-    caption={description}
-  />
+const blockquoteStyles = makeStyles(theme => ({
+  root: {
+    fontStyle: 'italic',
+    backgroundColor: theme.palette.grey[200],
+    padding: theme.spacing(2),
+    marginLeft: 0,
+    marginRight: 0,
+    borderRadius: 12
+  },
+  footer: {
+    fontStyle: 'normal',
+    textAlign: 'right',
+    color: theme.palette.grey[700]
+  }
+}))
+
+// dash chars from https://www.fileformat.info/info/unicode/category/Pd/list.htm
+export const isQuoteAuthor = str => /^[-֊־᐀᠆‐‑‒–—―⸗⸚⸺⸻⹀〜〰゠︱︲﹘﹣－]/.test(str)
+
+const BlockquoteRenderer = (node, children) => {
+  const classes = blockquoteStyles()
+  // Separate the last line as the author text, to be right-aligned
+  const quoteBody = children.slice(0, children.length - 1)
+  let quoteAuthor = children.slice(children.length - 1)[0]
+  const quoteAuthorText = quoteAuthor.props.children[0]
+  // if the string doesn't start with a dash, put the last line back into the regular text
+  if (typeof quoteAuthorText !== 'string' | !isQuoteAuthor(quoteAuthorText)) {
+    quoteBody.push(quoteAuthor)
+    quoteAuthor = null
+  }
+  return <blockquote className={classes.root}>
+    {quoteBody}
+    {quoteAuthor && <Typography component='footer' className={classes.footer}>{quoteAuthor.props.children}</Typography>}
+  </blockquote>
 }
+
+const EmbeddedAssetRenderer = node => <ContentfulFigure image={node.data.target} />
 
 export const rendererConfig = {
   renderNode: {
     [BLOCKS.PARAGRAPH]: ParagraphRenderer,
+    [BLOCKS.QUOTE]: BlockquoteRenderer,
     [INLINES.HYPERLINK]: HyperlinkRenderer,
     [BLOCKS.EMBEDDED_ASSET]: EmbeddedAssetRenderer
   }
 }
+
+export const ContentfulRenderer = ({ document }) => documentToReactComponents(document, rendererConfig)
 
 export const ContentfulContentQuery = props => {
   const { component: ContentComponent, single } = props
@@ -91,8 +89,8 @@ export const ContentfulContentQuery = props => {
         return <Typography paragraph>Error loading content!</Typography>
       }
 
-      if (!data) {
-        return <Typography paragraph>Page does not exist!</Typography>
+      if (!data || !data.items.length) {
+        return <FourOhFour />
       }
 
       // See the Contentful query response
@@ -106,6 +104,6 @@ export const ContentfulContentQuery = props => {
 }
 
 ContentfulContentQuery.propTypes = {
-  component: PropTypes.node.isRequired,
+  component: PropTypes.func.isRequired,
   single: PropTypes.bool
 }
