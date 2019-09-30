@@ -28,7 +28,9 @@ const styles = theme => ({
   logoPlusLogoType: {
     display: 'flex',
     margin: `${theme.spacing(2)}px auto ${theme.spacing(12)}px`,
-    height: 200
+    height: 200,
+    width: 'auto',
+    maxWidth: '100%'
   },
   homeContentWrapper: {
     marginBottom: theme.spacing(12),
