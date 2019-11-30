@@ -5,7 +5,7 @@ import { makeStyles } from '@material-ui/styles'
 
 const useStyles = makeStyles({
   root: {
-    margin: '30px 0'
+    margin: '0 0 30px 0'
   },
   content: props => ({
     marginBottom: props.hasCaption ? '0.2em' : 0

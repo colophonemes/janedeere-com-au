@@ -4,6 +4,7 @@ import { BLOCKS, INLINES } from '@contentful/rich-text-types'
 import { Query } from 'react-contentful'
 import Typography from '@material-ui/core/Typography'
 import Box from '@material-ui/core/Box'
+import Grid from '@material-ui/core/Grid'
 import Link from '@material-ui/core/Link'
 import CircularProgress from '@material-ui/core/CircularProgress'
 import { Link as RouterLink } from 'react-router-dom'
@@ -11,10 +12,27 @@ import FourOhFour from 'containers/404'
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
 import ContentfulFigure from 'components/ContentfulFigure'
 import { makeStyles } from '@material-ui/styles'
+import ContentBlock from 'components/layout/ContentBlock'
+import PictureLinkGroup from 'components/PictureLinkGroup'
+import { ButtonLinkContentful } from 'components/Link'
 
 const isRelativeLink = link => /^\//.test(link)
 
 const ParagraphRenderer = (node, children) => <Typography paragraph>{children}</Typography>
+
+const HeadingRenderer = ({ children, variant }) => <Typography variant={variant} gutterBottom>
+  {children}
+</Typography>
+HeadingRenderer.propTypes = {
+  children: PropTypes.node,
+  variant: PropTypes.string
+}
+const H1Renderer = (node, children) => <HeadingRenderer variant='h1'>{children}</HeadingRenderer>
+const H2Renderer = (node, children) => <HeadingRenderer variant='h2'>{children}</HeadingRenderer>
+const H3Renderer = (node, children) => <HeadingRenderer variant='h3'>{children}</HeadingRenderer>
+const H4Renderer = (node, children) => <HeadingRenderer variant='h4'>{children}</HeadingRenderer>
+const H5Renderer = (node, children) => <HeadingRenderer variant='h5'>{children}</HeadingRenderer>
+const H6Renderer = (node, children) => <HeadingRenderer variant='h6'>{children}</HeadingRenderer>
 
 const HyperlinkRenderer = (node, children) => {
   const isRelative = isRelativeLink(node.data.uri)
@@ -62,11 +80,67 @@ const BlockquoteRenderer = (node, children) => {
 
 const EmbeddedAssetRenderer = node => <ContentfulFigure image={node.data.target} />
 
+const GridContainerRenderer = ({ fields }) => {
+  const { gridItems, alignItems, justify } = fields
+  console.log(gridItems, alignItems, justify)
+  return <Grid container {...{ alignItems, justify }}>
+    {gridItems.map(({ fields, sys }) => {
+      const sizes = {}
+      for (const size of ['xs', 'sm', 'md', 'lg']) {
+        if (fields[size]) sizes[size] = fields[size]
+      }
+      return <Grid item key={sys.id} {...sizes}>
+        <ContentfulRenderer document={fields.body} />
+      </Grid>
+    })}
+  </Grid>
+}
+
+GridContainerRenderer.propTypes = {
+  fields: PropTypes.shape({
+    gridItems: PropTypes.array,
+    alignItems: PropTypes.string,
+    justify: PropTypes.string
+  })
+}
+
+const embeddedEntryRenderers = {
+  contentBlock: ContentBlock,
+  pictureLinkGroup: PictureLinkGroup,
+  button: ButtonLinkContentful,
+  gridContainer: GridContainerRenderer
+}
+
+const embeddedEntryRendererStyles = makeStyles(theme => ({
+  root: {
+    marginBottom: theme.spacing(3)
+  }
+}))
+
+const EmbeddedEntryRenderer = node => {
+  const classes = embeddedEntryRendererStyles()
+  const contentType = node.data.target.sys.contentType.sys.id
+  const Renderer = embeddedEntryRenderers[contentType]
+  return <div className={classes.root}>
+    {Renderer
+      ? <Renderer {...node.data.target} />
+      : <div><strong>Unknown content type {contentType}</strong></div>
+    }
+  </div>
+}
+
 export const rendererConfig = {
   renderNode: {
     [BLOCKS.PARAGRAPH]: ParagraphRenderer,
+    [BLOCKS.HEADING_1]: H1Renderer,
+    [BLOCKS.HEADING_2]: H2Renderer,
+    [BLOCKS.HEADING_3]: H3Renderer,
+    [BLOCKS.HEADING_4]: H4Renderer,
+    [BLOCKS.HEADING_5]: H5Renderer,
+    [BLOCKS.HEADING_6]: H6Renderer,
     [BLOCKS.QUOTE]: BlockquoteRenderer,
     [INLINES.HYPERLINK]: HyperlinkRenderer,
+    [BLOCKS.EMBEDDED_ENTRY]: EmbeddedEntryRenderer,
     [BLOCKS.EMBEDDED_ASSET]: EmbeddedAssetRenderer
   }
 }

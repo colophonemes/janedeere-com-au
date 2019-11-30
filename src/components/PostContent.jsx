@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import Box from '@material-ui/core/Box'
 import Link from 'components/Link'
 import Typography from '@material-ui/core/Typography'
-import SpacedDivider from 'components/SpacedDivider'
 import { Link as RouterLink } from 'react-router-dom'
 import { ContentfulRenderer } from 'utilities/contentful'
 import { makeStyles } from '@material-ui/styles'
@@ -12,10 +11,7 @@ import FormattedDate from 'components/FormattedDate'
 const Byline = ({ authors }) => <span>
   by{' '}
   {authors.map(({ fields, sys }, index) => <span key={sys.id}>
-    {fields.slug === 'daria-belostotckaia'
-      ? <Link to={`/about`}>{fields.name}</Link>
-      : fields.name
-    }
+    {fields.name}
     {index < authors.length - 1 && `${index === authors.length - 2 ? ' &' : ','} `}
   </span>)}
 </span>

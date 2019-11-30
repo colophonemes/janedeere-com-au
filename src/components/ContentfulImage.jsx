@@ -2,25 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import ReactContentfulImage from 'react-contentful-image'
 import { withStyles } from '@material-ui/styles'
-
-const imageSizes = [
-  {
-    mediaQuery: 'default',
-    params: { w: 228 }
-  },
-  {
-    mediaQuery: 'sm',
-    params: { w: 600 }
-  },
-  {
-    mediaQuery: 'md',
-    params: { w: 970 }
-  },
-  {
-    mediaQuery: 'xl',
-    params: { w: 1200 }
-  }
-]
+import { imageSizes } from 'utilities/contentfulImageMediaQueries'
 
 const styles = {
   root: {

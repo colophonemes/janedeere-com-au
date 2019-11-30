@@ -1,44 +1,56 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import Container from '@material-ui/core/Container'
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 import IconButton from '@material-ui/core/IconButton'
 import MenuIcon from '@material-ui/icons/Menu'
-import HomeIcon from '@material-ui/icons/Home'
+// import HomeIcon from '@material-ui/icons/Home'
 import StarIcon from '@material-ui/icons/Star'
-import { withStyles } from '@material-ui/styles'
+import { withStyles, useTheme } from '@material-ui/styles'
+import useMediaQuery from '@material-ui/core/useMediaQuery'
+import { ButtonLink } from 'components/Link'
 import { NavLink, Link as RouterLink } from 'react-router-dom'
-import { ReactComponent as LogoType } from 'images/LogoType.svg'
-import { ReactComponent as Logo } from 'images/Logo.svg'
+import { ReactComponent as Logotype } from 'images/Logotype.svg'
+import { ReactComponent as LogotypeVertical } from 'images/Logotype Vertical.svg'
 
 import Drawer from '@material-ui/core/Drawer'
 import List from '@material-ui/core/List'
 import Divider from '@material-ui/core/Divider'
 import ListItem from '@material-ui/core/ListItem'
-import ListItemIcon from '@material-ui/core/ListItemIcon'
+// import ListItemIcon from '@material-ui/core/ListItemIcon'
 import ListItemText from '@material-ui/core/ListItemText'
 
 const menuItems = [
+  // {
+  //   href: '/',
+  //   text: 'Home',
+  //   icon: HomeIcon
+  // },
   {
-    href: '/',
-    text: 'Home',
-    icon: HomeIcon
-  },
-  {
-    href: '/blog',
-    text: 'Blog',
+    href: '/services',
+    text: 'Services',
     icon: StarIcon
   },
   {
     href: '/about',
     text: 'About',
     icon: StarIcon
+  },
+  {
+    href: '/contact',
+    text: 'Contact',
+    icon: StarIcon
   }
+
 ]
 
 const styles = theme => ({
   root: {
     flexGrow: 1
+  },
+  toolbarButtons: {
+    marginLeft: 'auto'
   },
   menuButton: {
     marginRight: theme.spacing(2)
@@ -56,7 +68,11 @@ const styles = theme => ({
   },
   menuItem: {
     minWidth: 200
-  }
+  },
+  drawerMenuItem: {
+    textAlign: 'center'
+  },
+  largeMenuItem: {}
 })
 
 const Header = ({ classes, minimal }) => {
@@ -64,35 +80,47 @@ const Header = ({ classes, minimal }) => {
     menuOpen: false
   })
 
+  const theme = useTheme()
+  const largeMenu = useMediaQuery(theme.breakpoints.up(menuItems.length > 4 ? 'md' :'sm'))
+
   const setMenuOpen = menuOpen => setState({ menuOpen })
   const openMenu = () => setMenuOpen(true)
   const closeMenu = () => setMenuOpen(false)
 
   return <div className={classes.root}>
-    {!minimal
-      ? <header>
-        <AppBar color='default' position="fixed">
-          <Toolbar variant="dense">
-            <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu" onClick={openMenu}>
-              <MenuIcon />
-            </IconButton>
+    <header>
+      <AppBar color='default' position="fixed">
+        <Container>
+          <Toolbar variant="regular">
             <RouterLink to='/'>
-              <LogoType preserveAspectRatio='xMidYMid meet' className={classes.logoType} />
+              <Logotype preserveAspectRatio='xMidYMid meet' className={classes.logoType} />
             </RouterLink>
+            <div className={classes.toolbarButtons}>
+              {largeMenu
+                ? menuItems.map(({ href, text, icon: Icon }) => <ButtonLink key={href} to={href} className={classes.largeMenuItem}>{text}</ButtonLink>)
+                : <IconButton edge="end" className={classes.menuButton} color="inherit" aria-label="menu" onClick={openMenu}>
+                  <MenuIcon />
+                </IconButton>
+              }
+            </div>
           </Toolbar>
-        </AppBar>
-      </header>
-      : <IconButton className={[classes.menuButton, classes.menuButtonFixed].join(' ')} color="inherit" aria-label="menu" onClick={openMenu}>
-        <MenuIcon />
-      </IconButton>
-    }
-    <Drawer open={state.menuOpen} onClose={closeMenu}>
-      <Logo className={classes.logo} />
+        </Container>
+      </AppBar>
+    </header>
+    <Drawer open={state.menuOpen} onClose={closeMenu} anchor='right'>
+      <LogotypeVertical className={classes.logo} />
       <Divider />
       <List>
-        {menuItems.map(({ href, text, icon: Icon }) => <ListItem button key={href} to={href} component={NavLink} onClick={closeMenu} className={classes.menuItem}>
-          <ListItemIcon><Icon /></ListItemIcon>
-          <ListItemText primary={text} />
+        {menuItems.map(({ href, text, icon: Icon }) => <ListItem
+          button
+          key={href}
+          to={href}
+          component={NavLink}
+          onClick={closeMenu}
+          className={classes.menuItem}
+        >
+          {/* <ListItemIcon><Icon /></ListItemIcon> */}
+          <ListItemText primary={text} className={classes.drawerMenuItem} />
         </ListItem>)}
       </List>
     </Drawer>

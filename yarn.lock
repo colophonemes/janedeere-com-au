@@ -6559,7 +6559,7 @@ lodash.uniq@^4.5.0:
   resolved "https://registry.yarnpkg.com/lodash.uniq/-/lodash.uniq-4.5.0.tgz#d0225373aeb652adc1bc82e4945339a842754773"
   integrity sha1-0CJTc662Uq3BvILklFM5qEJ1R3M=
 
-"lodash@>=3.5 <5", lodash@^4.17.10, lodash@^4.17.11, lodash@^4.17.12, lodash@^4.17.13, lodash@^4.17.14, lodash@^4.17.4, lodash@^4.17.5, lodash@^4.2.0:
+"lodash@>=3.5 <5", lodash@^4.17.10, lodash@^4.17.11, lodash@^4.17.12, lodash@^4.17.13, lodash@^4.17.14, lodash@^4.17.15, lodash@^4.17.4, lodash@^4.17.5, lodash@^4.2.0:
   version "4.17.15"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.15.tgz#b447f6670a0455bbfeedd11392eff330ea097548"
   integrity sha512-8xOcRHvCjnocdS5cpwXQXVzmmh5e5+saE2QGoeQmbKmRS6J3VQppPOIt0MnmE+4xlZoumy0GPG0D0MVIQbNA1A==
@@ -7179,6 +7179,26 @@ nwsapi@^2.0.7, nwsapi@^2.1.3:
   version "2.1.4"
   resolved "https://registry.yarnpkg.com/nwsapi/-/nwsapi-2.1.4.tgz#e006a878db23636f8e8a67d33ca0e4edf61a842f"
   integrity sha512-iGfd9Y6SFdTNldEy2L0GUhcarIutFmk+MPWIn9dmj8NMIup03G08uUF2KGbbmv/Ux4RT0VZJoP/sVbWA6d/VIw==
+
+oaf-react-router@^2.1.1:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/oaf-react-router/-/oaf-react-router-2.1.1.tgz#0216edddedb820ec7c67eda8fcaac2a471893b83"
+  integrity sha512-l3EAdh8b6DRvbbP6sC9uY4Iek1TZq4nxIrWzeZXiN6aCiiZ8NKcmKJqkuej8VbdX0lBCyVp7AgS/HWbXD6wp6A==
+  dependencies:
+    oaf-routing "^3.0.0"
+
+oaf-routing@^3.0.0:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/oaf-routing/-/oaf-routing-3.0.1.tgz#86b1170d6310583730fddcd3d0e34a4517bf61d4"
+  integrity sha512-1BiJObNkwQHTUZ5vBm0Yb1aB2oTe+SK2Oqr/p1zNCrm0c/oAHaZSRvYZhSYjvVa2q2B+O14v3e3LLIhHn0t+QQ==
+  dependencies:
+    oaf-side-effects "^2.0.0"
+    unique-selector "^0.4.1"
+
+oaf-side-effects@^2.0.0:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/oaf-side-effects/-/oaf-side-effects-2.0.1.tgz#d458a39b5ab2b4e2d6bc338902e3549d4160725d"
+  integrity sha512-xmWk1NynmS4ywNUtHUOYlai9s4vWPZpQ66NPOHM8x6e6g0ziD7Damgzza/OA/paMYQSsBaynNnvcoFun8zyRyA==
 
 oauth-sign@~0.9.0:
   version "0.9.0"
@@ -8716,6 +8736,21 @@ react-error-overlay@^6.0.2:
   resolved "https://registry.yarnpkg.com/react-error-overlay/-/react-error-overlay-6.0.2.tgz#642bd6157c6a4b6e9ca4a816f7ed30b868c47f81"
   integrity sha512-DHRuRk3K4Lg9obI6J4Y+nKvtwjasYRU9CFL3ud42x9YJG1HbQjSNublapC/WBJOA726gNUbqbj0U2df9+uzspQ==
 
+react-fast-compare@^2.0.2:
+  version "2.0.4"
+  resolved "https://registry.yarnpkg.com/react-fast-compare/-/react-fast-compare-2.0.4.tgz#e84b4d455b0fec113e0402c329352715196f81f9"
+  integrity sha512-suNP+J1VU1MWFKcyt7RtjiSWUjvidmQSlqu+eHslq+342xCbGTYmC0mEhPCOHxlW0CywylOC1u2DFAT+bv4dBw==
+
+react-helmet@^5.2.1:
+  version "5.2.1"
+  resolved "https://registry.yarnpkg.com/react-helmet/-/react-helmet-5.2.1.tgz#16a7192fdd09951f8e0fe22ffccbf9bb3e591ffa"
+  integrity sha512-CnwD822LU8NDBnjCpZ4ySh8L6HYyngViTZLfBBb3NjtrpN8m49clH8hidHouq20I51Y6TpCTISCBbqiY5GamwA==
+  dependencies:
+    object-assign "^4.1.1"
+    prop-types "^15.5.4"
+    react-fast-compare "^2.0.2"
+    react-side-effect "^1.1.0"
+
 react-intl@^3.3.2:
   version "3.3.2"
   resolved "https://registry.yarnpkg.com/react-intl/-/react-intl-3.3.2.tgz#e60ba59736b612654653be2409be3b9711a646af"
@@ -8826,6 +8861,13 @@ react-scripts@3.0.1:
     workbox-webpack-plugin "4.2.0"
   optionalDependencies:
     fsevents "2.0.6"
+
+react-side-effect@^1.1.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/react-side-effect/-/react-side-effect-1.2.0.tgz#0e940c78faba0c73b9b0eba9cd3dda8dfb7e7dae"
+  integrity sha512-v1ht1aHg5k/thv56DRcjw+WtojuuDHFUgGfc+bFHOWsF4ZK6C2V57DO0Or0GPsg6+LSTE0M6Ry/gfzhzSwbc5w==
+  dependencies:
+    shallowequal "^1.0.1"
 
 react-transition-group@^4.3.0:
   version "4.3.0"
@@ -9446,6 +9488,11 @@ shallow-equal@^1.1.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/shallow-equal/-/shallow-equal-1.2.0.tgz#fd828d2029ff4e19569db7e19e535e94e2d1f5cc"
   integrity sha512-Z21pVxR4cXsfwpMKMhCEIO1PCi5sp7KEp+CmOpBQ+E8GpHwKOw2sEzk7sgblM3d/j4z4gakoWEoPcjK0VJQogA==
+
+shallowequal@^1.0.1:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/shallowequal/-/shallowequal-1.1.0.tgz#188d521de95b9087404fd4dcb68b13df0ae4e7f8"
+  integrity sha512-y0m1JoUZSlPAjXVtPPW70aZWfIL/dSP7AFkRnniLCrK/8MDKog3TySTBmckD+RObVxH0v4Tox67+F14PdED2oQ==
 
 shebang-command@^1.2.0:
   version "1.2.0"
@@ -10346,6 +10393,11 @@ unique-filename@^1.1.1:
   integrity sha512-Vmp0jIp2ln35UTXuryvjzkjGdRyf9b2lTXuSYUiPmzRcl3FDtYqAwOnTJkAngD9SWhnoJzDbTKwaOrZ+STtxNQ==
   dependencies:
     unique-slug "^2.0.0"
+
+unique-selector@^0.4.1:
+  version "0.4.1"
+  resolved "https://registry.yarnpkg.com/unique-selector/-/unique-selector-0.4.1.tgz#f14e0f0e3b8fb3667c8245463c3ffe237442b0ac"
+  integrity sha512-7dLxUE1Wu89fpruo7DAH2k+7UcGSZBnEiwjvlPX5p0LuoJkVIgoaR/5YRFjwmQnVq7ZK0ankCdLRx4mRqd6oOQ==
 
 unique-slug@^2.0.0:
   version "2.0.2"

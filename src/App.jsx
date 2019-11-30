@@ -1,19 +1,20 @@
 import React from 'react'
-import { BrowserRouter as Router } from 'react-router-dom'
+import { Router } from 'react-router-dom'
+import { createBrowserHistory } from 'history'
+import { wrapHistory } from 'oaf-react-router'
 import { ContentfulClient, ContentfulProvider } from 'react-contentful'
 import { IntlProvider } from 'react-intl'
 import { ThemeProvider } from '@material-ui/styles'
 import { createMuiTheme } from '@material-ui/core/styles'
 import CssBaseline from '@material-ui/core/CssBaseline'
-import teal from '@material-ui/core/colors/teal'
-import blue from '@material-ui/core/colors/blue'
+import setupMediaQueries from 'utilities/contentfulImageMediaQueries'
 
 import Content from 'components/layout/Content'
 
 const headings = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'].reduce((coll, h) => {
   coll[h] = {
-    fontFamily: ['Zilla Slab', 'sans-serif'].join(', '),
-    fontWeight: 700
+    fontFamily: ['Alatsi', 'sans-serif'].join(', '),
+    fontWeight: 400
   }
   return coll
 }, {})
@@ -29,8 +30,18 @@ const theme = createMuiTheme({
     ...headings
   },
   palette: {
-    primary: teal,
-    secondary: blue
+    primary: {
+      main: '#26a69a',
+      light: '#64d8cb',
+      dark: '#00766c',
+      contrastText: '#000'
+    },
+    secondary: {
+      main: '#5c6bc0',
+      light: '#8e99f3',
+      dark: '#26418f',
+      contrastText: '#FFF'
+    }
   },
   status: {
     danger: 'orange'
@@ -43,6 +54,11 @@ const theme = createMuiTheme({
   }
 })
 
+setupMediaQueries()
+
+const history = createBrowserHistory()
+wrapHistory(history)
+
 const {
   REACT_APP_CONTENTFUL_SPACE,
   REACT_APP_CONTENTFUL_CONTENT_DELIVERY_ACCESS_TOKEN
@@ -53,14 +69,14 @@ const contentfulClient = new ContentfulClient({
   accessToken: REACT_APP_CONTENTFUL_CONTENT_DELIVERY_ACCESS_TOKEN
 })
 
-const LOCALE = 'en-GB'
+const LOCALE = 'en-US'
 
 const App = () => <div className='App'>
   <CssBaseline>
     <ThemeProvider theme={theme}>
       <IntlProvider locale={LOCALE}>
         <ContentfulProvider client={contentfulClient} locale={LOCALE}>
-          <Router>
+          <Router history={history}>
             <Content />
           </Router>
         </ContentfulProvider>

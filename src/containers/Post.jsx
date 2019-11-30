@@ -4,21 +4,13 @@ import { ContentfulContentQuery } from 'utilities/contentful'
 
 import Grid from '@material-ui/core/Grid'
 import PostContent from 'components/PostContent'
-import SpacedDivider from 'components/SpacedDivider'
-import Commento from 'components/Commento'
-import Typography from '@material-ui/core/Typography'
+import HeadTags from 'components/layout/HeadTags'
 
 const PostContentWrapper = ({ sys, fields }) => <React.Fragment>
+  <HeadTags title={fields.title} />
   <Grid container justify='center' spacing={3}>
     <Grid item xs={12} md={8}>
       <PostContent key={sys.id} {...{ sys, fields }} />
-    </Grid>
-  </Grid>
-  <Grid container justify='center' spacing={3}>
-    <Grid item xs={12} md={8}>
-      <SpacedDivider />
-      <Typography variant='h4' gutterBottom>Comments</Typography>
-      <Commento id={sys.id} />
     </Grid>
   </Grid>
 </React.Fragment>
