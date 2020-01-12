@@ -5,7 +5,7 @@ import { wrapHistory } from 'oaf-react-router'
 import { ContentfulClient, ContentfulProvider } from 'react-contentful'
 import { IntlProvider } from 'react-intl'
 import { ThemeProvider } from '@material-ui/styles'
-import { createMuiTheme } from '@material-ui/core/styles'
+import { createMuiTheme, responsiveFontSizes } from '@material-ui/core/styles'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import setupMediaQueries from 'utilities/contentfulImageMediaQueries'
 
@@ -13,34 +13,39 @@ import Content from 'components/layout/Content'
 
 const headings = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'].reduce((coll, h) => {
   coll[h] = {
-    fontFamily: ['Alatsi', 'sans-serif'].join(', '),
-    fontWeight: 400
+    fontFamily: ['Cormorant Garamond', 'serif'].join(', '),
+    fontWeight: 700
   }
   return coll
 }, {})
 
-const bodyFontFamily = ['Libre Caslon Text', 'serif'].join(', ')
+const bodyFontFamily = ['Cormorant Garamond', 'serif'].join(', ')
 
-const theme = createMuiTheme({
+const theme = responsiveFontSizes(createMuiTheme({
   typography: {
+    fontSize: 14,
     fontFamily: bodyFontFamily,
+    body1: {
+      fontSize: 1.4
+    },
     body2: {
+      fontSize: 1.4,
       fontFamily: bodyFontFamily
     },
     ...headings
   },
   palette: {
     primary: {
-      main: '#26a69a',
-      light: '#64d8cb',
-      dark: '#00766c',
+      main: '#80deea',
+      light: '#b4ffff',
+      dark: '#4bacb8',
       contrastText: '#000'
     },
     secondary: {
-      main: '#5c6bc0',
-      light: '#8e99f3',
-      dark: '#26418f',
-      contrastText: '#FFF'
+      main: '#303f9f',
+      light: '#666ad1',
+      dark: '#001970',
+      contrastText: '#fff'
     }
   },
   status: {
@@ -52,7 +57,7 @@ const theme = createMuiTheme({
       maxWidth: '100%'
     }
   }
-})
+}))
 
 setupMediaQueries()
 

@@ -6,7 +6,7 @@ import { imageSizes } from 'utilities/contentfulImageMediaQueries'
 
 const styles = {
   root: {
-    width: 'auto',
+    width: '100%',
     maxWidth: '100%'
   }
 }

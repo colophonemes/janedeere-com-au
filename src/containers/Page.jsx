@@ -29,7 +29,7 @@ const PageContent = ({ fields: { title, body, featuredImage, bannerImage, heroIm
           <ContentfulRenderer document={body} />
         </Grid>
         {heroImage && <Grid item md={4}>
-          <ContentfulImage image={heroImage} />}
+          <ContentfulImage image={heroImage} />
         </Grid>}
       </Grid>
     </Container>

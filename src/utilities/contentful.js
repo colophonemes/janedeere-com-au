@@ -82,8 +82,8 @@ const EmbeddedAssetRenderer = node => <ContentfulFigure image={node.data.target}
 
 const GridContainerRenderer = ({ fields }) => {
   const { gridItems, alignItems, justify } = fields
-  console.log(gridItems, alignItems, justify)
-  return <Grid container {...{ alignItems, justify }}>
+  const textAlign = fields.textAlign || 'left'
+  return <Grid container {...{ alignItems, justify }} style={{ textAlign }}>
     {gridItems.map(({ fields, sys }) => {
       const sizes = {}
       for (const size of ['xs', 'sm', 'md', 'lg']) {

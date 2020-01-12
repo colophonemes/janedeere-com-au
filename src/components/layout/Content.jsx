@@ -40,11 +40,11 @@ const Content = ({ classes, location }) => <React.Fragment>
   <NavigationHeader minimal={false} />
   <div className={classes.toolbar} />
   <Switch>
-    <Route exact path='/' component={Home} noContainer />
-    <Route exact path='/blog' component={Posts} />
-    <Route path='/blog/:postSlug' component={Post} />
-    <Route path='/:slug' component={Page} noContainer />
-    <Route path='*' component={FourOhFour} />
+    <RouteWrapper exact path='/' component={Home} noContainer />
+    <RouteWrapper exact path='/blog' component={Posts} />
+    <RouteWrapper path='/blog/:postSlug' component={Post} />
+    <RouteWrapper path='/:slug' component={Page} noContainer />
+    <RouteWrapper path='*' component={FourOhFour} />
   </Switch>
   <Footer />
 </React.Fragment>

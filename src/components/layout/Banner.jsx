@@ -1,11 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { getBackgroundImageCss } from 'react-contentful-image'
-import { withStyles } from '@material-ui/styles'
+import { makeStyles, useTheme } from '@material-ui/styles'
+import useMediaQuery from '@material-ui/core/useMediaQuery'
 
 const styles = theme => ({
   root: {
-    height: '70vh',
+    height: props => props.largeBanner ? '70vh' : '40vh',
     backgroundSize: 'cover',
     backgroundPosition: 'center',
     margin: `0 0 ${theme.spacing(3)}px 0`
@@ -31,18 +32,23 @@ const imageSizes = [
   }
 ]
 
-const Banner = ({ image, classes }) => <div
-  className={[
-    getBackgroundImageCss(image.fields.file.url, imageSizes),
-    classes.root
-  ].join(' ')}
-/>
+const useStyles = makeStyles(styles)
 
+const Banner = ({ image }) => {
+  const theme = useTheme()
+  const largeBanner = useMediaQuery(theme.breakpoints.up('md'));
+  const classes = useStyles({ largeBanner })
+  return <div
+    className={[
+      getBackgroundImageCss(image.fields.file.url, imageSizes),
+      classes.root
+    ].join(' ')}
+  />
+}
 Banner.propTypes = {
   image: PropTypes.shape({
     fields: PropTypes.object
-  }).isRequired,
-  classes: PropTypes.object.isRequired
+  }).isRequired
 }
 
-export default withStyles(styles)(Banner)
+export default Banner

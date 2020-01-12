@@ -7,6 +7,8 @@ import { useTheme, makeStyles } from '@material-ui/styles'
 import { getBackgroundImageCss } from 'react-contentful-image'
 import { imageSizes } from 'utilities/contentfulImageMediaQueries'
 import HeroContentBlock from './HeroContentBlock'
+import useMediaQuery from '@material-ui/core/useMediaQuery'
+
 
 const defaultPropTypes = {
   body: PropTypes.object,
@@ -38,7 +40,7 @@ const contentBlockThemes = {
 
 const useStyles = makeStyles(theme => ({
   root: {
-    minHeight: ({ height }) => height ? `${height}vh` : 'auto',
+    minHeight: ({ height, md }) => height ? `${md ? height : height / 2 }vh` : 'auto',
     overflow: 'hidden',
     padding: `${theme.spacing(6)}px 0`,
     display: 'flex',
@@ -57,12 +59,14 @@ const useStyles = makeStyles(theme => ({
 
 const ContentBlock = ({ sys, fields }) => {
   const theme = useTheme()
+  const md = useMediaQuery(theme.breakpoints.up('md'))
   const classes = useStyles({
     textColor: fields.textColor || theme.palette.text.primary,
     backgroundColor: fields.backgroundColor || 'transparent',
     contentBlockTheme: contentBlockThemes[fields.theme] || contentBlockThemes.default,
     height: fields.height,
-    textAlign: fields.textAlign || 'left'
+    textAlign: fields.textAlign || 'left',
+    md
   })
 
   let backgroundImages = ''

@@ -10,18 +10,19 @@ const textShadow = color => [...Array(4)].map((a, i) => `0 0 ${i * 30}px ${color
 const useStyles = makeStyles(theme => ({
   root: {
     fontSize: '0.1em',
+    textAlign: ({ md }) => md ? 'left' : 'center',
     '& h2': {
-      fontSize: ({ md }) => md ? '4rem' : '2rem',
+      fontSize: ({ md }) => md ? '4rem' : '3rem',
       textTransform: 'uppercase',
       border: '2px solid',
       padding: `${theme.spacing(6)}px 0`,
       borderLeft: 'none',
       borderRight: 'none',
-      color: theme.palette.primary.dark,
+      color: '#4d878e',
       textShadow: textShadow('#FFF')
     },
     '& p': {
-      fontSize: ({ md }) => md ? '2rem' : '1rem',
+      fontSize: ({ md }) => md ? '2rem' : '1.6rem',
       textShadow: textShadow('#333')
     }
   },

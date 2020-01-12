@@ -5,6 +5,8 @@ import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 import IconButton from '@material-ui/core/IconButton'
 import MenuIcon from '@material-ui/icons/Menu'
+import FacebookIcon from '@material-ui/icons/Facebook'
+import InstagramIcon from '@material-ui/icons/Instagram'
 // import HomeIcon from '@material-ui/icons/Home'
 import StarIcon from '@material-ui/icons/Star'
 import { withStyles, useTheme } from '@material-ui/styles'
@@ -18,7 +20,6 @@ import Drawer from '@material-ui/core/Drawer'
 import List from '@material-ui/core/List'
 import Divider from '@material-ui/core/Divider'
 import ListItem from '@material-ui/core/ListItem'
-// import ListItemIcon from '@material-ui/core/ListItemIcon'
 import ListItemText from '@material-ui/core/ListItemText'
 
 const menuItems = [
@@ -34,16 +35,37 @@ const menuItems = [
   },
   {
     href: '/about',
-    text: 'About',
+    text: 'About Jane',
+    icon: StarIcon
+  },
+  {
+    href: '/my-philosophy',
+    text: 'My Philosophy',
+    icon: StarIcon
+  },
+  {
+    href: '/faq',
+    text: 'FAQ',
     icon: StarIcon
   },
   {
     href: '/contact',
     text: 'Contact',
     icon: StarIcon
+  },
+  {
+    href: 'https://www.facebook.com/janedeerecoaching/',
+    text: 'Facebook',
+    icon: FacebookIcon
+  },
+  {
+    href: 'https://www.instagram.com/jane_deere_coaching/',
+    text: 'Instagram',
+    icon: InstagramIcon
   }
-
 ]
+
+const isExternalLink = href => /^https?:\/\//.test(href)
 
 const styles = theme => ({
   root: {
@@ -68,6 +90,9 @@ const styles = theme => ({
   },
   menuItem: {
     minWidth: 200
+  },
+  iconListItem: {
+    textAlign: 'center'
   },
   drawerMenuItem: {
     textAlign: 'center'
@@ -97,7 +122,9 @@ const Header = ({ classes, minimal }) => {
             </RouterLink>
             <div className={classes.toolbarButtons}>
               {largeMenu
-                ? menuItems.map(({ href, text, icon: Icon }) => <ButtonLink key={href} to={href} className={classes.largeMenuItem}>{text}</ButtonLink>)
+                ? menuItems.map(({ href, text, icon: Icon, iconOnly }) => isExternalLink(href)
+                  ? <IconButton key={href} href={href} target='_blank' rel='noopener noreferrer'><Icon /></IconButton>
+                  : <ButtonLink key={href} to={href} className={classes.largeMenuItem}>{text}</ButtonLink>)
                 : <IconButton edge="end" className={classes.menuButton} color="inherit" aria-label="menu" onClick={openMenu}>
                   <MenuIcon />
                 </IconButton>
@@ -111,17 +138,23 @@ const Header = ({ classes, minimal }) => {
       <LogotypeVertical className={classes.logo} />
       <Divider />
       <List>
-        {menuItems.map(({ href, text, icon: Icon }) => <ListItem
-          button
-          key={href}
-          to={href}
-          component={NavLink}
-          onClick={closeMenu}
-          className={classes.menuItem}
-        >
-          {/* <ListItemIcon><Icon /></ListItemIcon> */}
-          <ListItemText primary={text} className={classes.drawerMenuItem} />
-        </ListItem>)}
+        {menuItems.map(({ href, text, icon: Icon, iconOnly }) => isExternalLink(href)
+          ? <li className={classes.iconListItem}>
+            <IconButton key={href} href={href} target='_blank' rel='noopener noreferrer'>
+              <Icon />
+            </IconButton>
+          </li>
+          : <ListItem
+            button
+            key={href}
+            to={href}
+            component={NavLink}
+            onClick={closeMenu}
+            className={classes.menuItem}
+          >
+            <ListItemText primary={text} className={classes.drawerMenuItem} />
+          </ListItem>)
+        }
       </List>
     </Drawer>
   </div>
