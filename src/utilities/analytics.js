@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react'
+import PropTypes from 'prop-types'
 import ReactGA from 'react-ga'
 
-const { REACT_APP_GOOGLE_ANALYTICS_TRACKING_ID } = process.env
+const { REACT_APP_GOOGLE_ANALYTICS_TRACKING_ID, NODE_ENV } = process.env
 
 ReactGA.initialize(REACT_APP_GOOGLE_ANALYTICS_TRACKING_ID)
 
@@ -15,9 +16,15 @@ export const withTracker = (WrappedComponent, options = {}) => {
   }
 
   const HOC = props => {
-    useEffect(() => trackPage(props.location.pathname), [
-      props.location.pathname
-    ])
+    useEffect(() => {
+      if (NODE_ENV !== 'development') {
+        trackPage(props.location.pathname)
+      }
+    }, [props.location.pathname])
+
+    HOC.propTypes = {
+      location: PropTypes.object
+    }
 
     return <WrappedComponent {...props} />
   }
