@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import Container from '@material-ui/core/Container'
 import { withRouter, Route, Switch } from 'react-router-dom'
 import { withStyles } from '@material-ui/styles'
+import { withTracker } from 'utilities/analytics'
 
 import Home from 'containers/Home'
 import Page from 'containers/Page'
@@ -17,10 +18,12 @@ const styles = theme => ({
   toolbar: theme.mixins.toolbar
 })
 
+const TrackedRoute = (props) => <Route {...props} component={withTracker(props.component)} />
+
 const RouteWrapper = props => {
   const componentProps = omit(props, ['noContainer'])
-  if (props.noContainer) return <Route {...componentProps} />
-  return <Container><Route {...componentProps} /></Container>
+  if (props.noContainer) return <TrackedRoute {...componentProps} />
+  return <Container><TrackedRoute {...componentProps} /></Container>
 }
 
 RouteWrapper.propTypes = {
