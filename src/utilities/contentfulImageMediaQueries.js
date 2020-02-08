@@ -26,11 +26,11 @@ const variants = {
     density: 1
   },
   dpr2: {
-    quality: 50,
+    quality: 75,
     density: 2
   },
   dpr3: {
-    quality: 50,
+    quality: 70,
     density: 3
   }
 }
