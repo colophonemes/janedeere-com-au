@@ -13,8 +13,8 @@ import { withStyles, useTheme } from '@material-ui/styles'
 import useMediaQuery from '@material-ui/core/useMediaQuery'
 import { ButtonLink } from 'components/Link'
 import { NavLink, Link as RouterLink } from 'react-router-dom'
-import { ReactComponent as Logotype } from 'images/Logotype.svg'
-import { ReactComponent as LogotypeVertical } from 'images/Logotype Vertical.svg'
+import LogoType from 'images/Logotype.png'
+import LogotypeVertical from 'images/Logotype Vertical.png'
 
 import Drawer from '@material-ui/core/Drawer'
 import List from '@material-ui/core/List'
@@ -46,6 +46,11 @@ const menuItems = [
   {
     href: '/faq',
     text: 'FAQ',
+    icon: StarIcon
+  },
+  {
+    href: '/pricing',
+    text: 'Pricing',
     icon: StarIcon
   },
   {
@@ -85,8 +90,8 @@ const styles = theme => ({
     height: 28
   },
   logo: {
-    height: 40,
-    margin: theme.spacing(2)
+    width: 120,
+    margin: `${theme.spacing(2)}px auto`
   },
   menuItem: {
     minWidth: 200
@@ -106,7 +111,8 @@ const Header = ({ classes, minimal }) => {
   })
 
   const theme = useTheme()
-  const largeMenu = useMediaQuery(theme.breakpoints.up(menuItems.length > 4 ? 'md' :'sm'))
+  const largeMenu = useMediaQuery(theme.breakpoints.up('sm'))
+  console.log(largeMenu, 'largeMenu')
 
   const setMenuOpen = menuOpen => setState({ menuOpen })
   const openMenu = () => setMenuOpen(true)
@@ -118,7 +124,7 @@ const Header = ({ classes, minimal }) => {
         <Container>
           <Toolbar variant="regular">
             <RouterLink to='/'>
-              <Logotype preserveAspectRatio='xMidYMid meet' className={classes.logoType} />
+              <img alt='Logo' src={LogoType} className={classes.logoType} />
             </RouterLink>
             <div className={classes.toolbarButtons}>
               {largeMenu
@@ -135,11 +141,11 @@ const Header = ({ classes, minimal }) => {
       </AppBar>
     </header>
     <Drawer open={state.menuOpen} onClose={closeMenu} anchor='right'>
-      <LogotypeVertical className={classes.logo} />
+      <img alt='Logo' src={LogotypeVertical} className={classes.logo} />
       <Divider />
       <List>
         {menuItems.map(({ href, text, icon: Icon, iconOnly }) => isExternalLink(href)
-          ? <li className={classes.iconListItem}>
+          ? <li key={href} className={classes.iconListItem}>
             <IconButton key={href} href={href} target='_blank' rel='noopener noreferrer'>
               <Icon />
             </IconButton>
