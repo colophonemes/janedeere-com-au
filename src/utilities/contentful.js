@@ -16,8 +16,7 @@ import ContentBlock from 'components/layout/ContentBlock'
 import PictureLinkGroup from 'components/PictureLinkGroup'
 import { ButtonLinkContentful } from 'components/Link'
 import ContactFormRenderer from 'components/ContactForm'
-
-const isRelativeLink = link => /^\//.test(link)
+import { isRelativeLink } from 'utilities/links'
 
 const ParagraphRenderer = (node, children) => <Typography paragraph>{children}</Typography>
 
