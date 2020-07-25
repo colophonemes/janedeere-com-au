@@ -5,12 +5,24 @@ import Button from '@material-ui/core/Button'
 import { makeStyles } from '@material-ui/styles'
 import { useForm } from '@statickit/react'
 import TextField from '@material-ui/core/TextField'
-import Alert from '@material-ui/lab/Alert'
 
-const ThankYou = () => <>
-  <Typography>Thanks for sending your email, I'll be in touch with you soon.</Typography>
-  <Typography>— Jane Deere</Typography>
-</>
+const useStylesThankYou = makeStyles(theme => ({
+  root: {
+    border: `2px solid ${theme.palette.primary.main}`,
+    background: theme.palette.grey[100],
+    padding: theme.spacing(6),
+    margin: `${theme.spacing(6)}px 0`,
+    borderRadius: 10
+  }
+}))
+
+const ThankYou = () => {
+  const classes = useStylesThankYou()
+  return <div className={classes.root}>
+    <Typography>Thanks for sending your email, I'll be in touch with you soon.</Typography>
+    <Typography>— Jane Deere</Typography>
+  </div>
+}
 
 const getError = (field, fieldName, errors) => {
   const fieldErrors = errors.filter(error => error.field === field)
@@ -40,7 +52,7 @@ const ContactForm = props => {
   const classes = useStyles()
   const [state, handleSubmit] = useForm('contact')
   const { submitting, succeeded, errors } = state
-  if (succeeded) return <Alert severity='info'><ThankYou /></Alert>
+  if (succeeded) return <ThankYou />
   return <div className={classes.root}>
     <form onSubmit={handleSubmit} noValidate>
       <Grid container spacing={6}>

@@ -5,6 +5,7 @@ import { wrapHistory } from 'oaf-react-router'
 import { ContentfulClient, ContentfulProvider } from 'react-contentful'
 import { IntlProvider } from 'react-intl'
 import { ThemeProvider } from '@material-ui/styles'
+import { StaticKitProvider } from '@statickit/react'
 import { createMuiTheme, responsiveFontSizes } from '@material-ui/core/styles'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import setupMediaQueries from 'utilities/contentfulImageMediaQueries'
@@ -78,7 +79,8 @@ wrapHistory(history)
 
 const {
   REACT_APP_CONTENTFUL_SPACE,
-  REACT_APP_CONTENTFUL_CONTENT_DELIVERY_ACCESS_TOKEN
+  REACT_APP_CONTENTFUL_CONTENT_DELIVERY_ACCESS_TOKEN,
+  REACT_APP_STATICKIT_SITE_ID
 } = process.env
 
 const contentfulClient = new ContentfulClient({
@@ -89,17 +91,18 @@ const contentfulClient = new ContentfulClient({
 const LOCALE = 'en-US'
 
 const App = () => <div className='App'>
-  <CssBaseline>
-    <ThemeProvider theme={theme}>
-      <IntlProvider locale={LOCALE}>
+  <CssBaseline />
+  <ThemeProvider theme={theme}>
+    <IntlProvider locale={LOCALE}>
+      <StaticKitProvider site={REACT_APP_STATICKIT_SITE_ID}>
         <ContentfulProvider client={contentfulClient} locale={LOCALE}>
           <Router history={history}>
             <Content />
           </Router>
         </ContentfulProvider>
-      </IntlProvider>
-    </ThemeProvider>
-  </CssBaseline>
+      </StaticKitProvider>
+    </IntlProvider>
+  </ThemeProvider>
 </div>
 
 export default App
