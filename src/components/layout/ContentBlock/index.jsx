@@ -9,7 +9,6 @@ import { imageSizes } from 'utilities/contentfulImageMediaQueries'
 import HeroContentBlock from './HeroContentBlock'
 import useMediaQuery from '@material-ui/core/useMediaQuery'
 
-
 const defaultPropTypes = {
   body: PropTypes.object,
   featuredImage: PropTypes.object
@@ -40,7 +39,7 @@ const contentBlockThemes = {
 
 const useStyles = makeStyles(theme => ({
   root: {
-    minHeight: ({ height, md }) => height ? `${md ? height : height / 2 }vh` : 'auto',
+    minHeight: ({ height, md }) => height ? `${md ? height : height / 2}vh` : 'auto',
     overflow: 'hidden',
     padding: `${theme.spacing(6)}px 0`,
     display: 'flex',

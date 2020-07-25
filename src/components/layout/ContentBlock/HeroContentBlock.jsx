@@ -46,5 +46,4 @@ HeroContentBlockRenderer.propTypes = {
   body: PropTypes.object
 }
 
-
 export default HeroContentBlockRenderer

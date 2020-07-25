@@ -1,0 +1,28 @@
+{
+  "forms": {
+    "contact": {
+      "name": "Contact Form",
+      "fields": {
+        "name": {
+          "type": "text",
+          "required": true
+        },
+        "email": {
+          "type": "email",
+          "required": true
+        },
+        "message": {
+          "type": "text",
+          "required": true
+        }
+      },
+      "actions": [
+        {
+          "type": "email",
+          "to": "jane@janedeere.com.au"
+        }
+      ],
+      "allowExtraFields": false
+    }
+  }
+}

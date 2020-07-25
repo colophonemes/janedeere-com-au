@@ -15,6 +15,7 @@ import { makeStyles } from '@material-ui/styles'
 import ContentBlock from 'components/layout/ContentBlock'
 import PictureLinkGroup from 'components/PictureLinkGroup'
 import { ButtonLinkContentful } from 'components/Link'
+import ContactFormRenderer from 'components/ContactForm'
 
 const isRelativeLink = link => /^\//.test(link)
 
@@ -108,7 +109,8 @@ const embeddedEntryRenderers = {
   contentBlock: ContentBlock,
   pictureLinkGroup: PictureLinkGroup,
   button: ButtonLinkContentful,
-  gridContainer: GridContainerRenderer
+  gridContainer: GridContainerRenderer,
+  contactForm: ContactFormRenderer
 }
 
 const embeddedEntryRendererStyles = makeStyles(theme => ({
