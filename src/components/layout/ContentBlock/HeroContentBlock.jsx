@@ -5,7 +5,7 @@ import { ContentfulRenderer } from 'utilities/contentful'
 import useMediaQuery from '@material-ui/core/useMediaQuery'
 import { useTheme, makeStyles } from '@material-ui/styles'
 
-const textShadow = color => [...Array(4)].map((a, i) => `0 0 ${i * 30}px ${color}`).join(', ')
+const textShadow = color => [...Array(6)].map((a, i) => `0 0 ${i * 10}px ${color}`).join(', ')
 
 const useStyles = makeStyles(theme => ({
   root: {
