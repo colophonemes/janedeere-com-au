@@ -77,7 +77,10 @@ const styles = theme => ({
     flexGrow: 1
   },
   toolbarButtons: {
-    marginLeft: 'auto'
+    marginLeft: 'auto',
+    '& .MuiButton-label': {
+      fontWeight: 400
+    }
   },
   menuButton: {
     marginRight: theme.spacing(2)

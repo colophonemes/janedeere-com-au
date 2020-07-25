@@ -39,7 +39,7 @@ const theme = responsiveFontSizes(createMuiTheme({
       main: '#31929b',
       light: '#68c3cc',
       dark: '#00646d',
-      contrastText: '#000'
+      contrastText: '#FFF'
     },
     secondary: {
       main: '#303f9f',
@@ -58,6 +58,11 @@ const theme = responsiveFontSizes(createMuiTheme({
     }
   },
   overrides: {
+    MuiButton: {
+      label: {
+        fontWeight: '700'
+      }
+    },
     MuiLink: {
       root: {
         fontWeight: '700'
