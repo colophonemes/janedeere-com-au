@@ -56,6 +56,13 @@ const theme = responsiveFontSizes(createMuiTheme({
       width: 'auto',
       maxWidth: '100%'
     }
+  },
+  overrides: {
+    MuiLink: {
+      root: {
+        fontWeight: '700'
+      }
+    }
   }
 }))
 
