@@ -37,6 +37,7 @@ const getError = (field, fieldName, errors) => {
 
 const nameErrors = errors => getError('name', 'Name', errors)
 const emailErrors = errors => getError('email', 'Email address', errors)
+const phoneErrors = errors => getError('phone', 'Phone number', errors)
 const messageErrors = errors => getError('message', 'Message', errors)
 
 const useStyles = makeStyles(theme => ({
@@ -61,6 +62,9 @@ const ContactForm = props => {
         </Grid>
         <Grid item xs={12}>
           <TextField label='Email address' name='email' variant='filled' id='contact-form-email' fullWidth {...emailErrors(errors)} />
+        </Grid>
+        <Grid item xs={12}>
+          <TextField label='Phone number' name='phone' variant='filled' id='contact-form-phone' fullWidth {...phoneErrors(errors)} />
         </Grid>
         <Grid item xs={12}>
           <TextField label='Message' name='message' variant='filled' id='contact-form-message' inputProps={{ className: classes.textArea }} multiline fullWidth {...messageErrors(errors)} />

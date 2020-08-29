@@ -11,6 +11,10 @@
           "type": "email",
           "required": true
         },
+        "phone": {
+          "type": "text",
+          "required": false
+        },
         "message": {
           "type": "text",
           "required": true
