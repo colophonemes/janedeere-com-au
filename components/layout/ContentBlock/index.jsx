@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Container from '@material-ui/core/Container'
 
-import { ContentfulRenderer } from 'utilities/contentful'
+import { ContentfulDocument } from 'lib/contentful'
 import { useTheme, makeStyles } from '@material-ui/styles'
 import { getBackgroundImageCss } from 'react-contentful-image'
 import { imageSizes } from 'utilities/contentfulImageMediaQueries'
@@ -11,49 +11,48 @@ import useMediaQuery from '@material-ui/core/useMediaQuery'
 
 const defaultPropTypes = {
   body: PropTypes.object,
-  featuredImage: PropTypes.object
+  featuredImage: PropTypes.object,
 }
 
-const DefaultContentBlockRenderer = ({ body }) => <div className='contentBody'>
-  <ContentfulRenderer document={body} />
-</div>
+const DefaultContentBlockRenderer = ({ body }) => (
+  <div className="contentBody">
+    <ContentfulDocument document={body} />
+  </div>
+)
 
 DefaultContentBlockRenderer.propTypes = defaultPropTypes
 
 const contentBlockRenderers = {
   default: DefaultContentBlockRenderer,
-  hero: HeroContentBlock
+  hero: HeroContentBlock,
 }
 
 const contentBlockThemes = {
-  default: theme => ({
+  default: (theme) => ({
     // textAlign: 'center'
   }),
-  hero: theme => ({
-
-  }),
-  'side-by-side': theme => ({
-
-  })
+  hero: (theme) => ({}),
+  'side-by-side': (theme) => ({}),
 }
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
-    minHeight: ({ height, md }) => height ? `${md ? height : height / 2}vh` : 'auto',
+    minHeight: ({ height, md }) =>
+      height ? `${md ? height : height / 2}vh` : 'auto',
     overflow: 'hidden',
     padding: `${theme.spacing(6)}px 0`,
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: props => props.backgroundColor,
+    backgroundColor: (props) => props.backgroundColor,
     backgroundSize: 'cover',
     backgroundPosition: 'center',
-    textAlign: ({ textAlign }) => textAlign
+    textAlign: ({ textAlign }) => textAlign,
   },
-  content: props => ({
+  content: (props) => ({
     color: props.textColor,
-    ...props.contentBlockTheme(theme)
-  })
+    ...props.contentBlockTheme(theme),
+  }),
 }))
 
 const ContentBlock = ({ sys, fields }) => {
@@ -62,10 +61,11 @@ const ContentBlock = ({ sys, fields }) => {
   const classes = useStyles({
     textColor: fields.textColor || theme.palette.text.primary,
     backgroundColor: fields.backgroundColor || 'transparent',
-    contentBlockTheme: contentBlockThemes[fields.theme] || contentBlockThemes.default,
+    contentBlockTheme:
+      contentBlockThemes[fields.theme] || contentBlockThemes.default,
     height: fields.height,
     textAlign: fields.textAlign || 'left',
-    md
+    md,
   })
 
   let backgroundImages = ''
@@ -76,23 +76,21 @@ const ContentBlock = ({ sys, fields }) => {
     )
   }
 
-  const ContentBlockRenderer = contentBlockRenderers[fields.theme] || contentBlockRenderers.default
+  const ContentBlockRenderer =
+    contentBlockRenderers[fields.theme] || contentBlockRenderers.default
 
-  return <section
-    className={[
-      classes.root,
-      backgroundImages
-    ].join(' ')}
-  >
-    <Container fixed className={classes.content}>
-      <ContentBlockRenderer {...fields} />
-    </Container>
-  </section>
+  return (
+    <section className={[classes.root, backgroundImages].join(' ')}>
+      <Container fixed className={classes.content}>
+        <ContentBlockRenderer {...fields} />
+      </Container>
+    </section>
+  )
 }
 
 ContentBlock.propTypes = {
   sys: PropTypes.object.isRequired,
-  fields: PropTypes.object.isRequired
+  fields: PropTypes.object.isRequired,
 }
 
 export default ContentBlock
