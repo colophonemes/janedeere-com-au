@@ -4,6 +4,7 @@ import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
 import { makeStyles } from '@material-ui/core/styles'
 import { PageEntry, ContentfulDocument } from 'lib/contentful'
+import PageBase from 'components/PageBase'
 import Banner from 'components/layout/Banner'
 import ContentfulImage from 'components/ContentfulImage'
 import { SITE_TITLE } from 'siteGlobals'
@@ -68,13 +69,13 @@ const Page: React.FC<PageProps> = ({ Page }) => {
   const { title, bannerImage } = Page.fields
   const docTitle = isHomePage(Page) ? SITE_TITLE : `${title} | ${SITE_TITLE}`
   return (
-    <>
+    <PageBase title={title}>
       <Head>
         <title>{docTitle}</title>
       </Head>
       {bannerImage && <Banner image={bannerImage} />}
       <PageContainer Page={Page} />
-    </>
+    </PageBase>
   )
 }
 

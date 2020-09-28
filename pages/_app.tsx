@@ -5,6 +5,7 @@ import { ThemeProvider } from '@material-ui/styles'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import theme from 'utils/theme'
 import { StaticKitProvider } from '@statickit/react'
+import { AnalyticsProvider } from 'utilities/analytics'
 import Content from 'components/layout/Content'
 import { SITE_TITLE } from 'siteGlobals'
 
@@ -24,11 +25,15 @@ function MyApp({ Component, pageProps }: AppProps) {
       </Head>
       <CssBaseline />
       <ThemeProvider theme={theme}>
-        <StaticKitProvider site={process.env.NEXT_PUBLIC_STATICKIT_SITE_ID}>
-          <Content>
-            <Component {...pageProps} />
-          </Content>
-        </StaticKitProvider>
+        <AnalyticsProvider
+          trackingCode={process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_TRACKING_ID}
+        >
+          <StaticKitProvider site={process.env.NEXT_PUBLIC_STATICKIT_SITE_ID}>
+            <Content>
+              <Component {...pageProps} />
+            </Content>
+          </StaticKitProvider>
+        </AnalyticsProvider>
       </ThemeProvider>
     </>
   )
