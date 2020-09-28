@@ -7,25 +7,36 @@ import Footer from 'components/layout/Footer'
 
 const useStyles = makeStyles((theme) => ({
   toolbar: theme.mixins.toolbar,
+  wrapper: {
+    display: 'flex',
+    flexDirection: 'column',
+    minHeight: '100vh',
+  },
+  content: {
+    alignContent: 'flex-start',
+    flex: '1 0 auto',
+  },
+  footer: {
+    flexShrink: 0,
+  },
 }))
 
 const Content: React.FC = ({ children }) => {
   const classes = useStyles()
   return (
     <>
-      <NavigationHeader minimal={false} />
-      <div className={classes.toolbar} />
-      {children}
-      <Footer />
+      <NavigationHeader />
+      <div className={classes.wrapper}>
+        <div className={classes.content}>
+          <div className={classes.toolbar} />
+          {children}
+        </div>
+        <div className={classes.footer}>
+          <Footer />
+        </div>
+      </div>
     </>
   )
-}
-
-Content.propTypes = {
-  classes: PropTypes.object.isRequired,
-  location: PropTypes.shape({
-    pathname: PropTypes.string.isRequired,
-  }).isRequired,
 }
 
 export default Content

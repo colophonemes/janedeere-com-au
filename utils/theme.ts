@@ -15,7 +15,9 @@ const theme = responsiveFontSizes(
     typography: {
       fontSize: 14,
       fontFamily: bodyFontFamily,
-      body1: {},
+      body1: {
+        fontSize: 22,
+      },
       body2: {
         fontFamily: bodyFontFamily,
       },

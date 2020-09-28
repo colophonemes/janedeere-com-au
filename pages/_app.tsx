@@ -1,3 +1,4 @@
+import Head from 'next/head'
 import { useEffect } from 'react'
 import { AppProps } from 'next/app'
 import { ThemeProvider } from '@material-ui/styles'
@@ -5,8 +6,7 @@ import CssBaseline from '@material-ui/core/CssBaseline'
 import theme from 'utils/theme'
 import { StaticKitProvider } from '@statickit/react'
 import Content from 'components/layout/Content'
-
-const { NEXT_PUBLIC_STATICKIT_SITE_ID } = process.env
+import { SITE_TITLE } from 'siteGlobals'
 
 function MyApp({ Component, pageProps }: AppProps) {
   useEffect(() => {
@@ -19,13 +19,16 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   return (
     <>
+      <Head>
+        <title>{SITE_TITLE}</title>
+      </Head>
       <CssBaseline />
       <ThemeProvider theme={theme}>
-        {/* <StaticKitProvider site={NEXT_PUBLIC_STATICKIT_SITE_ID}> */}
-        <Content>
-          <Component {...pageProps} />
-        </Content>
-        {/* </StaticKitProvider> */}
+        <StaticKitProvider site={process.env.NEXT_PUBLIC_STATICKIT_SITE_ID}>
+          <Content>
+            <Component {...pageProps} />
+          </Content>
+        </StaticKitProvider>
       </ThemeProvider>
     </>
   )

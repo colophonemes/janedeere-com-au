@@ -106,7 +106,7 @@ const styles = (theme) => ({
   largeMenuItem: {},
 })
 
-const Header = ({ classes, minimal }) => {
+const Header = ({ classes, minimal = false }) => {
   const [state, setState] = React.useState({
     menuOpen: false,
   })

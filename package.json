@@ -28,7 +28,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "contentful-types": "contentful-typescript-codegen --output lib/contentful/types.ts"
   },
   "browserslist": {
     "production": [
@@ -44,6 +45,9 @@
   },
   "devDependencies": {
     "@types/node": "^14.11.2",
+    "contentful-management": "^6.1.2",
+    "contentful-typescript-codegen": "^3.2.1",
+    "dotenv": "^8.2.0",
     "eslint-config-standard": "^14.1.0",
     "eslint-config-standard-react": "^9.2.0",
     "eslint-plugin-import": "^2.18.2",
