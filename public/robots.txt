@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Host: https://janedeere.com.au
+Sitemap: https://janedeere.com.au/sitemap.xml
