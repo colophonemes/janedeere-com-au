@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
-<url><loc>https://janedeere.com.au/</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2020-09-28T17:24:24.554Z</lastmod></url>
-<url><loc>https://janedeere.com.au/404</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2020-09-28T17:24:24.554Z</lastmod></url>
-<url><loc>https://janedeere.com.au/contact</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2020-09-28T17:24:24.554Z</lastmod></url>
-<url><loc>https://janedeere.com.au/home</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2020-09-28T17:24:24.554Z</lastmod></url>
-<url><loc>https://janedeere.com.au/about</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2020-09-28T17:24:24.554Z</lastmod></url>
-<url><loc>https://janedeere.com.au/my-philosophy</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2020-09-28T17:24:24.554Z</lastmod></url>
-<url><loc>https://janedeere.com.au/transitions-at-work</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2020-09-28T17:24:24.554Z</lastmod></url>
-<url><loc>https://janedeere.com.au/life-after-loss</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2020-09-28T17:24:24.554Z</lastmod></url>
-<url><loc>https://janedeere.com.au/wellbeing</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2020-09-28T17:24:24.554Z</lastmod></url>
-<url><loc>https://janedeere.com.au/life-stages</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2020-09-28T17:24:24.554Z</lastmod></url>
-<url><loc>https://janedeere.com.au/chronic-pain</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2020-09-28T17:24:24.554Z</lastmod></url>
-<url><loc>https://janedeere.com.au/pricing</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2020-09-28T17:24:24.554Z</lastmod></url>
-<url><loc>https://janedeere.com.au/faq</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2020-09-28T17:24:24.554Z</lastmod></url>
-<url><loc>https://janedeere.com.au/faqs</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2020-09-28T17:24:24.554Z</lastmod></url>
-<url><loc>https://janedeere.com.au/transition-coaching</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2020-09-28T17:24:24.554Z</lastmod></url>
-<url><loc>https://janedeere.com.au/services</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2020-09-28T17:24:24.554Z</lastmod></url>
-<url><loc>https://janedeere.com.au/is-coaching-for-me</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2020-09-28T17:24:24.554Z</lastmod></url>
+<url><loc>https://janedeere.com.au/</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2020-09-28T17:27:45.672Z</lastmod></url>
+<url><loc>https://janedeere.com.au/contact</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2020-09-28T17:27:45.672Z</lastmod></url>
+<url><loc>https://janedeere.com.au/home</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2020-09-28T17:27:45.672Z</lastmod></url>
+<url><loc>https://janedeere.com.au/about</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2020-09-28T17:27:45.672Z</lastmod></url>
+<url><loc>https://janedeere.com.au/my-philosophy</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2020-09-28T17:27:45.672Z</lastmod></url>
+<url><loc>https://janedeere.com.au/transitions-at-work</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2020-09-28T17:27:45.672Z</lastmod></url>
+<url><loc>https://janedeere.com.au/life-after-loss</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2020-09-28T17:27:45.672Z</lastmod></url>
+<url><loc>https://janedeere.com.au/wellbeing</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2020-09-28T17:27:45.672Z</lastmod></url>
+<url><loc>https://janedeere.com.au/life-stages</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2020-09-28T17:27:45.672Z</lastmod></url>
+<url><loc>https://janedeere.com.au/chronic-pain</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2020-09-28T17:27:45.672Z</lastmod></url>
+<url><loc>https://janedeere.com.au/pricing</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2020-09-28T17:27:45.672Z</lastmod></url>
+<url><loc>https://janedeere.com.au/faq</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2020-09-28T17:27:45.672Z</lastmod></url>
+<url><loc>https://janedeere.com.au/faqs</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2020-09-28T17:27:45.672Z</lastmod></url>
+<url><loc>https://janedeere.com.au/transition-coaching</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2020-09-28T17:27:45.672Z</lastmod></url>
+<url><loc>https://janedeere.com.au/services</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2020-09-28T17:27:45.672Z</lastmod></url>
+<url><loc>https://janedeere.com.au/is-coaching-for-me</loc><changefreq>daily</changefreq><priority>0.7</priority><lastmod>2020-09-28T17:27:45.672Z</lastmod></url>
 </urlset>
