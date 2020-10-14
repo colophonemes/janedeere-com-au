@@ -333,6 +333,12 @@ export interface IPostFields {
 
   /** Body */
   body: Document
+
+  /** Banner Image */
+  bannerImage?: Asset | undefined
+
+  /** Excerpt */
+  excerpt?: string | undefined
 }
 
 /** A blog post */

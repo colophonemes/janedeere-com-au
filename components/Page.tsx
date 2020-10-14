@@ -28,7 +28,7 @@ const useDefaultPageStyles = makeStyles((theme) => ({
   },
 }))
 
-const DefaultPage: React.FC<PageProps> = ({ Page }) => {
+const DefaultPage: React.FC<PageProps> = ({ Page, children }) => {
   const { heroImage, title, body, bannerImage } = Page.fields
   const classes = useDefaultPageStyles({ hasBanner: !!bannerImage })
   return (
@@ -43,6 +43,7 @@ const DefaultPage: React.FC<PageProps> = ({ Page }) => {
       <Grid container spacing={3} justify="center">
         <Grid item xs={12} md={8}>
           <ContentfulDocument document={body} />
+          {children}
         </Grid>
         {heroImage && (
           <Grid item md={4}>
@@ -54,18 +55,18 @@ const DefaultPage: React.FC<PageProps> = ({ Page }) => {
   )
 }
 
-const PageContainer: React.FC<PageProps> = ({ Page }) => {
+const PageContainer: React.FC<PageProps> = ({ Page, children }) => {
   const { containment } = Page.fields
   switch (containment) {
     case 'full-width':
-      return <FullWidthPage Page={Page} />
+      return <FullWidthPage Page={Page}>{children}</FullWidthPage>
     case 'default':
     default:
-      return <DefaultPage Page={Page} />
+      return <DefaultPage Page={Page}>{children}</DefaultPage>
   }
 }
 
-const Page: React.FC<PageProps> = ({ Page }) => {
+const Page: React.FC<PageProps> = ({ Page, children }) => {
   const { title, bannerImage } = Page.fields
   const docTitle = isHomePage(Page) ? SITE_TITLE : `${title} | ${SITE_TITLE}`
   return (
@@ -74,7 +75,7 @@ const Page: React.FC<PageProps> = ({ Page }) => {
         <title>{docTitle}</title>
       </Head>
       {bannerImage && <Banner image={bannerImage} />}
-      <PageContainer Page={Page} />
+      <PageContainer Page={Page}>{children}</PageContainer>
     </PageBase>
   )
 }

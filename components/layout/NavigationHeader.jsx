@@ -57,6 +57,11 @@ const menuItems = [
     icon: StarIcon,
   },
   {
+    href: '/blog',
+    text: 'Blog',
+    icon: StarIcon,
+  },
+  {
     href: 'https://www.facebook.com/janedeerecoaching/',
     text: 'Facebook',
     icon: FacebookIcon,
