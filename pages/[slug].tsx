@@ -22,9 +22,13 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   }
 }
 
+const excludedPages = ['blog']
+
 export const getStaticPaths: GetStaticPaths = async () => {
   const pages = await fetchPages()
-  const paths = pages.map((page) => ({ params: { slug: page.fields.slug } }))
+  const paths = pages
+    .filter((page) => !excludedPages.includes(page.fields.slug))
+    .map((page) => ({ params: { slug: page.fields.slug } }))
   return {
     paths,
     fallback: false,
