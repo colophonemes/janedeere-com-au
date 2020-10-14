@@ -31,6 +31,6 @@ export const getStaticProps: GetStaticProps = async () => {
       PageData,
       Posts,
     },
-    revalidate: 2 * 1000,
+    revalidate: 1 * 60,
   }
 }
