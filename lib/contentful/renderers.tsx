@@ -81,6 +81,7 @@ const useBlockquoteStyles = makeStyles((theme) => ({
     marginLeft: 0,
     marginRight: 0,
     borderRadius: 12,
+    textAlign: 'center',
   },
 }))
 
