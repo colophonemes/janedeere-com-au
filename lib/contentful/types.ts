@@ -39,6 +39,33 @@ export interface IButton extends Entry<IButtonFields> {
   }
 }
 
+export interface IColumnListFields {
+  /** Title */
+  title: string
+
+  /** Body */
+  body: Document
+}
+
+/** A list of items that should wrap to a certain number of columns. Should only have a list in the content. */
+
+export interface IColumnList extends Entry<IColumnListFields> {
+  sys: {
+    id: string
+    type: string
+    createdAt: string
+    updatedAt: string
+    locale: string
+    contentType: {
+      sys: {
+        id: 'columnList'
+        linkType: 'ContentType'
+        type: 'Link'
+      }
+    }
+  }
+}
+
 export interface IContactFormFields {
   /** Title */
   title: string
@@ -392,6 +419,7 @@ export interface ISeries extends Entry<ISeriesFields> {
 
 export type CONTENT_TYPE =
   | 'button'
+  | 'columnList'
   | 'contactForm'
   | 'contentBlock'
   | 'gridContainer'

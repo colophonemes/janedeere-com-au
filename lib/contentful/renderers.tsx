@@ -1,6 +1,7 @@
 import { ReactNode } from 'react'
 import {
   ButtonEntry,
+  ColumnListEntry,
   GridContainerEntry,
   TContentfulEntry,
 } from 'lib/contentful'
@@ -151,12 +152,38 @@ const ButtonLinkRenderer: TEmbeddedEntryRenderer<ButtonEntry> = ({
   )
 }
 
+const useColumnListStyles = makeStyles((theme) => ({
+  root: {
+    '& ul': {
+      columnCount: 1,
+      [theme.breakpoints.up('md')]: {
+        columnCount: 2,
+      },
+      [theme.breakpoints.up('lg')]: {
+        columnCount: 3,
+      },
+    },
+  },
+}))
+
+const ColumnListRenderer: TEmbeddedEntryRenderer<ColumnListEntry> = ({
+  fields: { title, body },
+}) => {
+  const classes = useColumnListStyles()
+  return (
+    <div className={classes.root}>
+      <ContentfulDocument document={body} />
+    </div>
+  )
+}
+
 const embeddedEntryRenderers: Record<string, TEmbeddedEntryRenderer<any>> = {
   contentBlock: ContentBlock,
   pictureLinkGroup: PictureLinkGroup,
   button: ButtonLinkRenderer,
   gridContainer: GridContainerRenderer,
   contactForm: ContactFormRenderer,
+  columnList: ColumnListRenderer,
 }
 
 const EmbeddedEntryRenderer: NodeRenderer = (node) => {

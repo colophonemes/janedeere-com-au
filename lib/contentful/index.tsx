@@ -10,6 +10,7 @@ import {
   IPictureLinkGroupFields,
   IPostFields,
   ISeriesFields,
+  IColumnListFields,
 } from './types'
 import { ContentfulDocument } from './renderers'
 import { Entry } from 'contentful'
@@ -36,6 +37,8 @@ export type PostEntry = Entry<IPostFields>
 export type PostEntryFields = IPostFields
 export type SeriesEntry = Entry<ISeriesFields>
 export type SeriesEntryFields = ISeriesFields
+export type ColumnListEntry = Entry<IColumnListFields>
+export type ColumnListEntryFields = IColumnListFields
 
 export type TContentfulEntry =
   | ButtonEntry
