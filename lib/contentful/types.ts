@@ -417,6 +417,33 @@ export interface ISeries extends Entry<ISeriesFields> {
   }
 }
 
+export interface ISnippetFields {
+  /** Title */
+  title: string
+
+  /** Body */
+  body: Document
+}
+
+/** A reuseable snippet of content to embed  */
+
+export interface ISnippet extends Entry<ISnippetFields> {
+  sys: {
+    id: string
+    type: string
+    createdAt: string
+    updatedAt: string
+    locale: string
+    contentType: {
+      sys: {
+        id: 'snippet'
+        linkType: 'ContentType'
+        type: 'Link'
+      }
+    }
+  }
+}
+
 export type CONTENT_TYPE =
   | 'button'
   | 'columnList'
@@ -430,6 +457,7 @@ export type CONTENT_TYPE =
   | 'pictureLinkGroup'
   | 'post'
   | 'series'
+  | 'snippet'
 
 export type LOCALE_CODE = 'en-US'
 

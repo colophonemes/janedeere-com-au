@@ -11,6 +11,7 @@ import {
   IPostFields,
   ISeriesFields,
   IColumnListFields,
+  ISnippetFields,
 } from './types'
 import { ContentfulDocument } from './renderers'
 import { Entry } from 'contentful'
@@ -39,6 +40,8 @@ export type SeriesEntry = Entry<ISeriesFields>
 export type SeriesEntryFields = ISeriesFields
 export type ColumnListEntry = Entry<IColumnListFields>
 export type ColumnListEntryFields = IColumnListFields
+export type SnippetEntry = Entry<ISnippetFields>
+export type SnippetEntryFields = ISnippetFields
 
 export type TContentfulEntry =
   | ButtonEntry

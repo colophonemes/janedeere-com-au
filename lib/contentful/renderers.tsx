@@ -3,6 +3,7 @@ import {
   ButtonEntry,
   ColumnListEntry,
   GridContainerEntry,
+  SnippetEntry,
   TContentfulEntry,
 } from 'lib/contentful'
 import {
@@ -167,7 +168,7 @@ const useColumnListStyles = makeStyles((theme) => ({
 }))
 
 const ColumnListRenderer: TEmbeddedEntryRenderer<ColumnListEntry> = ({
-  fields: { title, body },
+  fields: { body },
 }) => {
   const classes = useColumnListStyles()
   return (
@@ -177,6 +178,12 @@ const ColumnListRenderer: TEmbeddedEntryRenderer<ColumnListEntry> = ({
   )
 }
 
+const SnippetRenderer: TEmbeddedEntryRenderer<SnippetEntry> = ({
+  fields: { body },
+}) => {
+  return <ContentfulDocument document={body} />
+}
+
 const embeddedEntryRenderers: Record<string, TEmbeddedEntryRenderer<any>> = {
   contentBlock: ContentBlock,
   pictureLinkGroup: PictureLinkGroup,
@@ -184,6 +191,7 @@ const embeddedEntryRenderers: Record<string, TEmbeddedEntryRenderer<any>> = {
   gridContainer: GridContainerRenderer,
   contactForm: ContactFormRenderer,
   columnList: ColumnListRenderer,
+  snippet: SnippetRenderer,
 }
 
 const EmbeddedEntryRenderer: NodeRenderer = (node) => {
