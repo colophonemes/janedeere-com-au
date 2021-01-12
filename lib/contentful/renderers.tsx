@@ -5,6 +5,7 @@ import {
   GridContainerEntry,
   SnippetEntry,
   TContentfulEntry,
+  YoutubeEmbedEntry,
 } from 'lib/contentful'
 import {
   documentToReactComponents,
@@ -184,6 +185,57 @@ const SnippetRenderer: TEmbeddedEntryRenderer<SnippetEntry> = ({
   return <ContentfulDocument document={body} />
 }
 
+const useYoutubeEmbedRendererStyles = makeStyles((theme) => ({
+  videoWrapper: {
+    position: 'relative',
+    paddingBottom: '56.25%' /* 16:9 */,
+    height: 0,
+    '& iframe': {
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      width: '100%',
+      height: '100%',
+    },
+  },
+}))
+// from https://gist.github.com/takien/4077195
+function getIdFromYoutubeURL(url: string): string {
+  var ID = ''
+  url = url
+    .replace(/(>|<)/gi, '')
+    .split(/(vi\/|v=|\/v\/|youtu\.be\/|\/embed\/)/)
+  if (url[2] !== undefined) {
+    ID = url[2].split(/[^0-9a-z_\-]/i)
+    ID = ID[0]
+  } else {
+    ID = url
+  }
+  return ID
+}
+
+const YoutubeEmbedRenderer: TEmbeddedEntryRenderer<YoutubeEmbedEntry> = ({
+  fields: { url },
+}) => {
+  const classes = useYoutubeEmbedRendererStyles()
+
+  const id = getIdFromYoutubeURL(url)
+  const src = `https://www.youtube.com/embed/${id}`
+
+  return (
+    <div className={classes.videoWrapper}>
+      <iframe
+        width="560"
+        height="315"
+        src={src}
+        frameBorder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowFullScreen
+      />
+    </div>
+  )
+}
+
 const embeddedEntryRenderers: Record<string, TEmbeddedEntryRenderer<any>> = {
   contentBlock: ContentBlock,
   pictureLinkGroup: PictureLinkGroup,
@@ -192,6 +244,7 @@ const embeddedEntryRenderers: Record<string, TEmbeddedEntryRenderer<any>> = {
   contactForm: ContactFormRenderer,
   columnList: ColumnListRenderer,
   snippet: SnippetRenderer,
+  youtubeEmbed: YoutubeEmbedRenderer,
 }
 
 const EmbeddedEntryRenderer: NodeRenderer = (node) => {

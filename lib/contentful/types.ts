@@ -444,6 +444,31 @@ export interface ISnippet extends Entry<ISnippetFields> {
   }
 }
 
+export interface IYoutubeEmbedFields {
+  /** Title */
+  title: string
+
+  /** Video URL */
+  url: string
+}
+
+export interface IYoutubeEmbed extends Entry<IYoutubeEmbedFields> {
+  sys: {
+    id: string
+    type: string
+    createdAt: string
+    updatedAt: string
+    locale: string
+    contentType: {
+      sys: {
+        id: 'youtubeEmbed'
+        linkType: 'ContentType'
+        type: 'Link'
+      }
+    }
+  }
+}
+
 export type CONTENT_TYPE =
   | 'button'
   | 'columnList'
@@ -458,6 +483,7 @@ export type CONTENT_TYPE =
   | 'post'
   | 'series'
   | 'snippet'
+  | 'youtubeEmbed'
 
 export type LOCALE_CODE = 'en-US'
 
