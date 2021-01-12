@@ -201,17 +201,14 @@ const useYoutubeEmbedRendererStyles = makeStyles((theme) => ({
 }))
 // from https://gist.github.com/takien/4077195
 function getIdFromYoutubeURL(url: string): string {
-  var ID = ''
-  url = url
+  const urlParts = url
     .replace(/(>|<)/gi, '')
     .split(/(vi\/|v=|\/v\/|youtu\.be\/|\/embed\/)/)
-  if (url[2] !== undefined) {
-    ID = url[2].split(/[^0-9a-z_\-]/i)
-    ID = ID[0]
+  if (urlParts[2] !== undefined) {
+    return urlParts[2].split(/[^0-9a-z_\-]/i)[0]
   } else {
-    ID = url
+    return url
   }
-  return ID
 }
 
 const YoutubeEmbedRenderer: TEmbeddedEntryRenderer<YoutubeEmbedEntry> = ({
