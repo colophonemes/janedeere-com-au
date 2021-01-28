@@ -3,7 +3,7 @@ import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
 import Button from '@material-ui/core/Button'
 import { makeStyles } from '@material-ui/styles'
-import { useForm } from '@statickit/react'
+import { useForm } from '@formspree/react'
 import TextField from '@material-ui/core/TextField'
 
 const useStylesThankYou = makeStyles((theme) => ({
