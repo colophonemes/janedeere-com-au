@@ -4,7 +4,7 @@ import { AppProps } from 'next/app'
 import { ThemeProvider } from '@material-ui/styles'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import theme from 'utils/theme'
-import { StaticKitProvider } from '@statickit/react'
+import { FormspreeProvider } from '@formspree/react'
 import { AnalyticsProvider } from 'utilities/analytics'
 import Content from 'components/layout/Content'
 import { SITE_TITLE } from 'siteGlobals'
@@ -28,11 +28,13 @@ function MyApp({ Component, pageProps }: AppProps) {
         <AnalyticsProvider
           trackingCode={process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_TRACKING_ID}
         >
-          <StaticKitProvider site={process.env.NEXT_PUBLIC_STATICKIT_SITE_ID}>
+          <FormspreeProvider
+            project={process.env.NEXT_PUBLIC_FORMSPREE_PROJECT_ID}
+          >
             <Content>
               <Component {...pageProps} />
             </Content>
-          </StaticKitProvider>
+          </FormspreeProvider>
         </AnalyticsProvider>
       </ThemeProvider>
     </>
