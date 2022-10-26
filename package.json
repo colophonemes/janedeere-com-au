@@ -23,7 +23,7 @@
     "styled-components": "^4.3.2"
   },
   "engines": {
-    "node": "^12.13"
+    "node": "16.x"
   },
   "scripts": {
     "dev": "next dev",
