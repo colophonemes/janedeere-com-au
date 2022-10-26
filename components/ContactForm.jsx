@@ -5,6 +5,7 @@ import Button from '@material-ui/core/Button'
 import { makeStyles } from '@material-ui/styles'
 import { useForm } from '@formspree/react'
 import TextField from '@material-ui/core/TextField'
+import { useAnalytics } from 'utilities/analytics'
 
 const useStylesThankYou = makeStyles((theme) => ({
   root: {
@@ -58,10 +59,20 @@ const ContactForm = (props) => {
   const classes = useStyles()
   const [state, handleSubmit] = useForm('contact')
   const { submitting, succeeded, errors } = state
+  const analytics = useAnalytics()
+
+  function doHandleSubmit(event) {
+    handleSubmit(event)
+    analytics.event({
+      category: 'Contact',
+      action: 'Contact Form Submitted',
+    })
+  }
+
   if (succeeded) return <ThankYou />
   return (
     <div className={classes.root}>
-      <form onSubmit={handleSubmit} noValidate>
+      <form onSubmit={doHandleSubmit} noValidate>
         <Grid container spacing={6}>
           <Grid item xs={12}>
             <TextField
