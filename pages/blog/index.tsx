@@ -10,7 +10,6 @@ export type BlogProps = {
 }
 
 export default function Blog({ PageData, Posts }: BlogProps) {
-  console.log(Posts)
   return (
     <>
       <Page Page={PageData}>
@@ -25,7 +24,6 @@ export default function Blog({ PageData, Posts }: BlogProps) {
 export const getStaticProps: GetStaticProps = async () => {
   const PageData = await fetchPage('blog')
   const Posts = await fetchPosts()
-  console.log(Posts)
   return {
     props: {
       PageData,

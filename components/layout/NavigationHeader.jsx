@@ -122,7 +122,6 @@ const Header = ({ classes, minimal = false }) => {
   const setMenuOpen = (menuOpen) => setState({ menuOpen })
   const openMenu = () => setMenuOpen(true)
   const closeMenu = () => setMenuOpen(false)
-
   return (
     <div className={classes.root}>
       <header>

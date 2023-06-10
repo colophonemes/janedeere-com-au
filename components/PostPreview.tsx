@@ -36,24 +36,22 @@ const PostPreview: React.FC<PostPreviewProps> = ({ Post }) => {
   const postLink = `/blog/${Post.fields.slug}`
   return (
     <Card className={classes.root}>
-      <NextLink href={postLink} passHref>
-        <a className={classes.bodyLink}>
-          <CardContent>
-            {Post.fields.bannerImage && (
-              <CardMedia
-                className={classes.bannerImage}
-                image={`https:${Post.fields.bannerImage.fields.file.url}?w=450`}
-              />
-            )}
-            <Typography variant="h3">{Post.fields.title}</Typography>
-            {Post.fields.excerpt && (
-              <Typography gutterBottom>{Post.fields.excerpt}</Typography>
-            )}
-            <Typography className={classes.date}>
-              {dateFormat(Post.sys.createdAt)}
-            </Typography>
-          </CardContent>
-        </a>
+      <NextLink href={postLink} passHref className={classes.bodyLink}>
+        <CardContent>
+          {Post.fields.bannerImage && (
+            <CardMedia
+              className={classes.bannerImage}
+              image={`https:${Post.fields.bannerImage.fields.file.url}?w=450`}
+            />
+          )}
+          <Typography variant="h3">{Post.fields.title}</Typography>
+          {Post.fields.excerpt && (
+            <Typography gutterBottom>{Post.fields.excerpt}</Typography>
+          )}
+          <Typography className={classes.date}>
+            {dateFormat(Post.sys.createdAt)}
+          </Typography>
+        </CardContent>
       </NextLink>
       <CardActions>
         <ButtonLink href={postLink} color="primary">

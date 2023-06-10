@@ -12,13 +12,9 @@ import NextLink, { LinkProps as NextLinkProps } from 'next/link'
 export type LinkProps = Omit<MUILinkProps, 'href' | 'classes'> &
   Pick<NextLinkProps, 'href' | 'as' | 'prefetch'>
 
-const Link = React.forwardRef<LinkProps, any>(
-  ({ href, as, prefetch, ...props }, ref) => (
-    <NextLink href={href} as={as} prefetch={prefetch} passHref>
-      <MUILink ref={ref} {...props} />
-    </NextLink>
-  )
-)
+const Link = React.forwardRef<LinkProps, any>(({ ...props }, ref) => (
+  <MUILink ref={ref} component={NextLink} {...props} />
+))
 
 Link.displayName = 'Link'
 
