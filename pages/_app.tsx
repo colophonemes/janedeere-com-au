@@ -26,7 +26,9 @@ function MyApp({ Component, pageProps }: AppProps) {
       <CssBaseline />
       <ThemeProvider theme={theme}>
         <AnalyticsProvider
-          trackingCode={process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_TRACKING_ID}
+          trackingCode={
+            process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_4_MEASUREMENT_ID
+          }
         >
           <FormspreeProvider
             project={process.env.NEXT_PUBLIC_FORMSPREE_PROJECT_ID}

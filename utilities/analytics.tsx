@@ -1,6 +1,5 @@
 import { createContext, useContext } from 'react'
-import ReactGA from 'react-ga'
-import { useRouter } from 'next/router'
+import ReactGA from 'react-ga4'
 
 const AnalyticsContext = createContext(null as null | typeof ReactGA)
 
@@ -21,9 +20,3 @@ export const AnalyticsProvider: React.FC<{ trackingCode: string }> = ({
 }
 
 export const useAnalytics = () => useContext(AnalyticsContext)
-
-export const usePageView = (pageTitle?: string) => {
-  const { asPath } = useRouter()
-  const ReactGA = useAnalytics()
-  ReactGA?.pageview(asPath, undefined, pageTitle)
-}
