@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.grey[400],
   },
   bannerImage: {
-    height: 200,
+    height: 300,
     marginBottom: theme.spacing(2),
   },
 }))
