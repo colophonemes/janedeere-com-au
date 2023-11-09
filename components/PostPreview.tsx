@@ -41,7 +41,7 @@ const PostPreview: React.FC<PostPreviewProps> = ({ Post }) => {
           {Post.fields.bannerImage && (
             <CardMedia
               className={classes.bannerImage}
-              image={`https:${Post.fields.bannerImage.fields.file.url}?w=450`}
+              image={`https:${Post.fields.bannerImage.fields.file.url}?w=800`}
             />
           )}
           <Typography variant="h3">{Post.fields.title}</Typography>
